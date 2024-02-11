@@ -1,3 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Base application theme-->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!--customize your theme here-->
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">#303030</item>
+        <!-- Darker variant for the status bar and contextual app bars. -->
+        <item name="colorPrimaryDark">#424242</item>
+        <!-- Theme UI controls like checkboxes and text fields. -->
+        <item name="colorAccent">#FF5252</item>
+    </style>
+    <style name="splashTheme" parent="AppTheme">
+        <item name="android:windowBackground">@drawable/splashscreen</item>
+    </style>
 </resources>
