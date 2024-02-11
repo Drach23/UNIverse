@@ -5,6 +5,74 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".UniverseActivity"
-    android:layout_margin="200dp">
+    android:background="@color/backgroundUniverse">
+    <TextView
+        android:id="@+id/loginText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Inicio De Sesion"
+        android:textSize="40dp"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:paddingTop="80dp"
+        app:layout_constraintBottom_toTopOf="@id/userImage"/>
+    <ImageView
+        android:id="@+id/userImage"
+        android:layout_width="230dp"
+        android:layout_height="230dp"
+        android:src="@drawable/user_icon"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/loginText"
+        />
+    <EditText
+        android:id="@+id/emailEditText"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:hint="Ingresa tu correo electronico"
+        android:inputType="text"
+        android:textSize="16dp"
+        android:padding="10dp"
+        android:background="@drawable/edit_text_background"
+        android:layout_marginTop="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/userImage"
+
+        />
+    <EditText
+        android:id="@+id/passwordEditText"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:hint="Ingresa tu contraseña"
+        android:inputType="text"
+        android:textSize="16dp"
+        android:padding="10dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/edit_text_background"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/emailEditText"
+        />
+    <Button
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="Ingresar"
+        android:gravity="center"
+        android:textSize="30dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/passwordEditText"
+        android:background="@color/buttonColor"
+        android:textColor="@color/white"
+
+        />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
