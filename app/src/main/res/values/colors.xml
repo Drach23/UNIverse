@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name = "backgroundUniverse">#000813</color>
     <color name= "buttonColor">#14E</color>
+    <color name="blue">#0859C8</color>
 </resources>
