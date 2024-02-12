@@ -59,6 +59,7 @@
         app:layout_constraintTop_toBottomOf="@id/emailEditText"
         />
     <Button
+        android:id="@+id/ingresarButton"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:text="Ingresar"
@@ -70,6 +71,32 @@
         app:layout_constraintTop_toBottomOf="@id/passwordEditText"
         android:background="@color/buttonColor"
         android:textColor="@color/white"
+        />
+    <TextView
+        android:id="@+id/sinCuentaText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="¿Aun no tienes cuenta?"
+        android:textColor="@color/white"
+        android:textSize="25dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ingresarButton"
+        android:layout_marginTop="20dp"
+        />
+    <TextView
+        android:id="@+id/aquiText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Registrate aqui"
+        android:textColor="@color/blue"
+        android:textSize="23dp"
+        android:layout_marginTop="5dp"
+        android:clickable="true"
+        android:onClick="goToRegister"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sinCuentaText"
 
         />
 
