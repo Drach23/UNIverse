@@ -7,7 +7,7 @@
     tools:context=".UniverseActivity"
     android:background="@color/backgroundUniverse">
     <TextView
-        android:id="@+id/loginText"
+        android:id="@+id/loginTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -18,19 +18,19 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:paddingTop="80dp"
-        app:layout_constraintBottom_toTopOf="@id/userImage"/>
+        app:layout_constraintBottom_toTopOf="@id/loginUserImageView"/>
     <ImageView
-        android:id="@+id/userImage"
+        android:id="@+id/loginUserImageView"
         android:layout_width="230dp"
         android:layout_height="230dp"
         android:src="@drawable/user_icon"
         android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/loginText"
+        app:layout_constraintTop_toBottomOf="@id/loginTextView"
         />
     <EditText
-        android:id="@+id/emailEditText"
+        android:id="@+id/loginEmailEditText"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:hint="Ingresa tu correo electronico"
@@ -41,11 +41,11 @@
         android:layout_marginTop="30dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/userImage"
+        app:layout_constraintTop_toBottomOf="@id/loginUserImageView"
 
         />
     <EditText
-        android:id="@+id/passwordEditText"
+        android:id="@+id/loginPasswordEditText"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:hint="Ingresa tu contraseña"
@@ -56,10 +56,10 @@
         android:background="@drawable/edit_text_background"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/emailEditText"
+        app:layout_constraintTop_toBottomOf="@id/loginEmailEditText"
         />
     <Button
-        android:id="@+id/ingresarButton"
+        android:id="@+id/loginIngresarButton"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:text="Ingresar"
@@ -68,12 +68,12 @@
         android:layout_marginTop="30dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/passwordEditText"
+        app:layout_constraintTop_toBottomOf="@id/loginPasswordEditText"
         android:background="@color/buttonColor"
         android:textColor="@color/white"
         />
     <TextView
-        android:id="@+id/sinCuentaText"
+        android:id="@+id/sinCuentaTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="¿Aun no tienes cuenta?"
@@ -81,11 +81,11 @@
         android:textSize="25dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ingresarButton"
+        app:layout_constraintTop_toBottomOf="@id/loginIngresarButton"
         android:layout_marginTop="20dp"
         />
     <TextView
-        android:id="@+id/aquiText"
+        android:id="@+id/aquiTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Registrate aqui"
@@ -96,7 +96,7 @@
         android:onClick="goToRegister"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/sinCuentaText"
+        app:layout_constraintTop_toBottomOf="@id/sinCuentaTextView"
 
         />
 
