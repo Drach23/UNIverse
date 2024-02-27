@@ -71,6 +71,7 @@
         app:layout_constraintTop_toBottomOf="@id/loginPasswordEditText"
         android:background="@color/buttonColor"
         android:textColor="@color/white"
+        android:onClick="login"
         />
     <TextView
         android:id="@+id/sinCuentaTextView"
