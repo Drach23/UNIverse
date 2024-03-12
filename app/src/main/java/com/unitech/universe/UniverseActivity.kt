@@ -4,38 +4,63 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
 
 class UniverseActivity : AppCompatActivity() {
+    private lateinit var auth: FirebaseAuth
+    private lateinit var emailEditText: EditText
+    private lateinit var passwordEditText: EditText
+
     override fun onCreate(savedInstanceState: Bundle?) {
         Thread.sleep(1000)
         setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_universe)
 
+        auth = FirebaseAuth.getInstance()
+
+        emailEditText = findViewById(R.id.loginEmailEditText)
+        passwordEditText = findViewById(R.id.loginPasswordEditText)
     }
-    public fun goToRegister(view: View){
-        Toast.makeText(this,"ingresando a Registro....",Toast.LENGTH_SHORT).show()
-        val intent = Intent(this,RegisterActivity::class.java)
+
+    fun goToRegister(view: View) {
+        Toast.makeText(this, "Ingresando a Registro....", Toast.LENGTH_SHORT).show()
+        val intent = Intent(this, RegisterActivity::class.java)
         startActivity(intent)
     }
 
-    public fun login(view: View){
-        val emailEditText = findViewById<EditText>(R.id.loginEmailEditText)
-        val passwordEdiText = findViewById<EditText>(R.id.loginPasswordEditText)
-        val loginButton = findViewById<Button>(R.id.loginIngresarButton)
+    fun login(view: View) {
+        val email = emailEditText.text.toString()
+        val password = passwordEditText.text.toString()
 
-        loginButton.setOnClickListener{
-            val email = emailEditText.text.toString()
-            val password = passwordEdiText.text.toString()
-
-            if(email.equals("universe@gmail.com") && password.equals("password123")){
-                Toast.makeText(this,"Te has logueado con exito",Toast.LENGTH_SHORT).show()
-            }else{
-                Toast.makeText(this,"Email o contraseña invalidos",Toast.LENGTH_SHORT).show()
-            }
+        if (email.isEmpty() || password.isEmpty()) {
+            showMessage("Por favor ingrese el correo y la contraseña")
+            return
         }
+
+        auth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // La autenticación fue exitosa
+                    showMessage("Inicio de sesión exitoso")
+                    goToHome()
+                } else {
+                    // La autenticación falló
+                    showMessage("Error al iniciar sesión: Usuario y/o contraseña no validos")
+                }
+            }
+    }
+
+
+    fun goToHome() {
+        showMessage("Ingresando a la pantalla principal...")
+        val intent = Intent(this, HomePageActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun showMessage(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 }
