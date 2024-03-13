@@ -59,6 +59,11 @@ class UniverseActivity : AppCompatActivity() {
         val intent = Intent(this, HomePageActivity::class.java)
         startActivity(intent)
     }
+    fun goToList(view: View){
+        showMessage("Ingresando a la Lista...")
+        val intent = Intent(this,ListActivity::class.java)
+        startActivity(intent)
+    }
 
     private fun showMessage(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
