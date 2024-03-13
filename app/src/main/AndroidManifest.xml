@@ -28,6 +28,8 @@
         <activity android:name=".HomePageActivity"
             android:exported="true">
         </activity>
-
+        <activity android:name=".ListActivity"
+            android:exported="true">
+        </activity>
     </application>
 </manifest>
