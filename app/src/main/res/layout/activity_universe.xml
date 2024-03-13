@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="Inicio De Sesion"
-        android:textSize="40dp"
+        android:textSize="40sp"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -29,42 +29,44 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/loginTextView"
         />
+
     <EditText
         android:id="@+id/loginEmailEditText"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/edit_text_background"
         android:hint="Ingresa tu correo electronico"
         android:inputType="text"
-        android:textSize="16dp"
+        android:minHeight="48dp"
         android:padding="10dp"
-        android:background="@drawable/edit_text_background"
-        android:layout_marginTop="30dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/loginUserImageView"
+        app:layout_constraintStart_toStartOf="parent"
 
-        />
+        app:layout_constraintTop_toBottomOf="@id/loginUserImageView" />
+
     <EditText
         android:id="@+id/loginPasswordEditText"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:hint="Ingresa tu contraseña"
-        android:inputType="text"
-        android:textSize="16dp"
-        android:padding="10dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/edit_text_background"
-        app:layout_constraintStart_toStartOf="parent"
+        android:hint="Ingresa tu contraseña"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:padding="10dp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/loginEmailEditText"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/loginEmailEditText" />
     <Button
         android:id="@+id/loginIngresarButton"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:text="Ingresar"
         android:gravity="center"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:layout_marginTop="30dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -79,27 +81,45 @@
         android:layout_height="wrap_content"
         android:text="¿Aun no tienes cuenta?"
         android:textColor="@color/white"
-        android:textSize="25dp"
+        android:textSize="25sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/loginIngresarButton"
         android:layout_marginTop="20dp"
         />
+
     <TextView
         android:id="@+id/aquiTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Registrate aqui"
-        android:textColor="@color/blue"
-        android:textSize="23dp"
         android:layout_marginTop="5dp"
         android:clickable="true"
+        android:minHeight="48dp"
         android:onClick="goToRegister"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="Registrate aqui"
+        android:textColor="@color/blue"
+        android:textSize="23sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/sinCuentaTextView"
+        app:layout_constraintStart_toStartOf="parent"
 
-        />
+        app:layout_constraintTop_toBottomOf="@id/sinCuentaTextView" />
+    <TextView
+        android:id="@+id/listTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:clickable="true"
+        android:minHeight="48dp"
+        android:onClick="goToList"
+        android:text="Accede a la lista aqui"
+        android:textColor="@color/purple_200"
+        android:textSize="23sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/aquiTextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="5dp"/>
+
 
 
 
