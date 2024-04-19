@@ -1,13 +1,13 @@
 package com.unitech.universe
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.InputType
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import com.google.firebase.Firebase
+import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 class RegisterActivity : AppCompatActivity() {
@@ -21,6 +21,7 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var passwordEditText: EditText
     private lateinit var confirmPasswordEditText: EditText
 
+    private val auth = FirebaseAuth.getInstance()
     private val db = FirebaseFirestore.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,65 +30,61 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(R.layout.activity_register)
 
         // Inicializar las vistas después de inflar el layout
-        registerSaveButton = findViewById<Button>(R.id.registerSaveButton)
-        firstNameEditText = findViewById<EditText>(R.id.firstNameEditText)
-        lastNameEditText = findViewById<EditText>(R.id.lastNameEditText)
-        phoneEditText = findViewById<EditText>(R.id.phoneEditText)
-        usernameEditText = findViewById<EditText>(R.id.usernameEditText)
-        emailEditText = findViewById<EditText>(R.id.emailEditText)
-        passwordEditText = findViewById<EditText>(R.id.passwordEditText)
-        confirmPasswordEditText = findViewById<EditText>(R.id.confirmPasswordEditText)
+        registerSaveButton = findViewById(R.id.registerSaveButton)
+        firstNameEditText = findViewById(R.id.firstNameEditText)
+        lastNameEditText = findViewById(R.id.lastNameEditText)
+        phoneEditText = findViewById(R.id.phoneEditText)
+        usernameEditText = findViewById(R.id.usernameEditText)
+        emailEditText = findViewById(R.id.emailEditText)
+        passwordEditText = findViewById(R.id.passwordEditText)
+        confirmPasswordEditText = findViewById(R.id.confirmPasswordEditText)
 
         passwordEditText.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
         confirmPasswordEditText.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
-
     }
 
-    public fun register(view: View) {
-        registerSaveButton.setOnClickListener {
-            if (validateInputs(
-                    firstNameEditText,
-                    lastNameEditText,
-                    phoneEditText,
-                    usernameEditText,
-                    emailEditText,
-                    passwordEditText,
-                    confirmPasswordEditText
-                )) {
-                val email = emailEditText.text.toString()
-                val passwordText = passwordEditText.text.toString()
-                val confirmPassword = confirmPasswordEditText.text.toString()
+    fun register(view: View) {
+        val email = emailEditText.text.toString()
+        val password = passwordEditText.text.toString()
+        val confirmPassword = confirmPasswordEditText.text.toString()
 
-                if (!passwordText.equals(confirmPassword)) {
-                    Toast.makeText(this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show()
-                }else if(!isValidEmail(email)){
-                    Toast.makeText(this,"No es un correo con domino UDG",Toast.LENGTH_SHORT).show()
-                }else {
-                    db.collection("users").document(email).set(
-                        hashMapOf(
-                            "firstName" to firstNameEditText.text.toString(),
-                            "lastName" to lastNameEditText.text.toString(),
-                            "phoneText" to phoneEditText.text.toString(),
-                            "username" to usernameEditText.text.toString(),
-                            "password" to passwordEditText.text.toString()
-                        )
-                    )
-                    Toast.makeText(this, "Registro exitoso", Toast.LENGTH_SHORT).show()
-                    cleanScreen()
+        if (!password.equals(confirmPassword)) {
+            Toast.makeText(this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        if (!isValidEmail(email)) {
+            Toast.makeText(this, "No es un correo con dominio UDG", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        // Crear usuario con email y contraseña en Firebase Authentication
+        auth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    val user = auth.currentUser
+                    if (user != null) {
+                        val userId = user.uid
+                        // Guardar los datos del usuario en Firestore con el mismo ID de usuario
+                        db.collection("users").document(userId).set(
+                            hashMapOf(
+                                "firstName" to firstNameEditText.text.toString(),
+                                "lastName" to lastNameEditText.text.toString(),
+                                "phone" to phoneEditText.text.toString(),
+                                "username" to usernameEditText.text.toString(),
+                                "email" to email,
+                            )
+                        ).addOnSuccessListener {
+                            Toast.makeText(this, "Registro exitoso", Toast.LENGTH_SHORT).show()
+                            cleanScreen()
+                        }.addOnFailureListener { e ->
+                            Toast.makeText(this, "Error al registrar: ${e.message}", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                } else {
+                    Toast.makeText(this, "Error al registrar: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
                 }
-            } else {
-                Toast.makeText(this, "Faltan campos por llenar", Toast.LENGTH_SHORT).show()
             }
-        }
-    }
-
-    private fun validateInputs(vararg editTexts: EditText): Boolean {
-        for (editText in editTexts) {
-            if (editText.text.isNullOrEmpty()) {
-                return false
-            }
-        }
-        return true
     }
 
     private fun cleanScreen() {
@@ -99,6 +96,7 @@ class RegisterActivity : AppCompatActivity() {
         passwordEditText.setText("")
         confirmPasswordEditText.setText("")
     }
+
     private fun isValidEmail(email: String): Boolean {
         val emailPattern = Regex("[a-zA-Z0-9._%+-]+@alumnos\\.udg\\.mx")
         return emailPattern.matches(email)
