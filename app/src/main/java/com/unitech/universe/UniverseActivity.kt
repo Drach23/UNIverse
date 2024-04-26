@@ -23,6 +23,10 @@ class UniverseActivity : AppCompatActivity() {
 
         emailEditText = findViewById(R.id.loginEmailEditText)
         passwordEditText = findViewById(R.id.loginPasswordEditText)
+
+        if (auth.currentUser != null) {
+            goToHome()
+        }
     }
 
     fun goToRegister(view: View) {
@@ -57,11 +61,6 @@ class UniverseActivity : AppCompatActivity() {
     fun goToHome() {
         showMessage("Ingresando a la pantalla principal...")
         val intent = Intent(this, HomePageActivity::class.java)
-        startActivity(intent)
-    }
-    fun goToList(view: View){
-        showMessage("Ingresando a la Lista...")
-        val intent = Intent(this,ListActivity::class.java)
         startActivity(intent)
     }
 

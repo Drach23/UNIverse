@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Base application theme-->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!--customize your theme here-->
         <!-- Primary brand color. -->
         <item name="colorPrimary">#303030</item>
@@ -10,7 +10,25 @@
         <!-- Theme UI controls like checkboxes and text fields. -->
         <item name="colorAccent">#FF5252</item>
     </style>
+    <style name="AppTheme.WithMain" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!--customize your theme here-->
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">#303030</item>
+        <!-- Darker variant for the status bar and contextual app bars. -->
+        <item name="colorPrimaryDark">#424242</item>
+        <!-- Theme UI controls like checkboxes and text fields. -->
+        <item name="colorAccent">#FF5252</item>
+        <item name="android:windowActionBarOverlay">true</item>
+    </style>
     <style name="splashTheme" parent="AppTheme">
         <item name="android:windowBackground">@drawable/splashscreen</item>
     </style>
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light">
+        <!-- Personalización del tema del popup -->
+        <item name="android:colorBackground">@color/backgroundUniverse</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">16sp</item>
+        <!-- Otros atributos que desees personalizar -->
+    </style>
+
 </resources>

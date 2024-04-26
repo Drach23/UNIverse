@@ -1,10 +1,13 @@
 package com.unitech.universe
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
 import android.view.View
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -17,6 +20,7 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var lastNameEditText: EditText
     private lateinit var phoneEditText: EditText
     private lateinit var usernameEditText: EditText
+    private lateinit var spinnerGender: Spinner
     private lateinit var emailEditText: EditText
     private lateinit var passwordEditText: EditText
     private lateinit var confirmPasswordEditText: EditText
@@ -28,6 +32,11 @@ class RegisterActivity : AppCompatActivity() {
         setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
+
+        spinnerGender = findViewById<Spinner>(R.id.genderSpinner)
+        val adapter = ArrayAdapter.createFromResource(this, R.array.optionsGender, android.R.layout.simple_spinner_item)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinnerGender.adapter = adapter
 
         // Inicializar las vistas después de inflar el layout
         registerSaveButton = findViewById(R.id.registerSaveButton)
@@ -47,6 +56,7 @@ class RegisterActivity : AppCompatActivity() {
         val email = emailEditText.text.toString()
         val password = passwordEditText.text.toString()
         val confirmPassword = confirmPasswordEditText.text.toString()
+        val gender = spinnerGender.selectedItem.toString()
 
         if (!password.equals(confirmPassword)) {
             Toast.makeText(this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show()
@@ -55,6 +65,12 @@ class RegisterActivity : AppCompatActivity() {
 
         if (!isValidEmail(email)) {
             Toast.makeText(this, "No es un correo con dominio UDG", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        // Verificar que no se haya seleccionado el primer ítem del Spinner
+        if (gender == "Selecciona tu género") {
+            Toast.makeText(this, "Por favor, selecciona un género válido", Toast.LENGTH_SHORT).show()
             return
         }
 
@@ -70,13 +86,16 @@ class RegisterActivity : AppCompatActivity() {
                             hashMapOf(
                                 "firstName" to firstNameEditText.text.toString(),
                                 "lastName" to lastNameEditText.text.toString(),
+                                "gender" to gender,
                                 "phone" to phoneEditText.text.toString(),
                                 "username" to usernameEditText.text.toString(),
                                 "email" to email,
                             )
                         ).addOnSuccessListener {
                             Toast.makeText(this, "Registro exitoso", Toast.LENGTH_SHORT).show()
-                            cleanScreen()
+                            val intent = Intent(this, UniverseActivity::class.java)
+                            startActivity(intent)
+                            finish()
                         }.addOnFailureListener { e ->
                             Toast.makeText(this, "Error al registrar: ${e.message}", Toast.LENGTH_SHORT).show()
                         }

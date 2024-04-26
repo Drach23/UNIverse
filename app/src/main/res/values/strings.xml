@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">UNIverse</string>
+    <string-array name="optionsGender">
+        <item>Selecciona tu género</item>
+        <item>Masculino</item>
+        <item>Femenino</item>
+        <item>Otro</item>
+    </string-array>
 </resources>
