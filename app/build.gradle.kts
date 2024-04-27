@@ -51,6 +51,9 @@ dependencies {
     // Dependency for Firebase Storage
     implementation ("com.google.firebase:firebase-storage:20.2.1")
     implementation("com.google.firebase:firebase-storage-ktx:20.2.1")
+    implementation("com.google.firebase:firebase-database-ktx:20.3.1")
+    implementation("com.google.firebase:firebase-database:20.3.1")
+    implementation("com.firebaseui:firebase-ui-firestore:7.1.1")
 
     // Dependency for Picasso
     implementation ("com.squareup.picasso:picasso:2.8")
