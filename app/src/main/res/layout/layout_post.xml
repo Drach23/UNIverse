@@ -4,9 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardBackgroundColor="@color/gray_toolbar"
+    app:cardBackgroundColor="@color/post"
     android:layout_margin="10dp"
-    app:cardCornerRadius="20dp"
+    app:cardCornerRadius="10dp"
     app:contentPadding="2dp"
     app:cardElevation="6dp">
 
@@ -25,22 +25,21 @@
             android:layout_alignParentEnd="true">
             <TextView
                 android:id="@+id/item_user_post"
-                android:layout_width="155dp"
+                android:layout_width="170dp"
                 android:layout_height="wrap_content"
                 android:text="User"
-                android:textSize="22sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="@color/white" />
-<!--            <TextView-->
-<!--                android:id="@+id/item_likes"-->
-<!--                android:layout_width="190dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="Me Gusta"-->
-<!--                android:textAlignment="textEnd"-->
-<!--                android:textSize="25sp"-->
-<!--                android:textStyle="bold"-->
-<!--                android:textColor="@color/white"-->
-<!--                />-->
+            <TextView
+                android:id="@+id/item_date"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:text="Fecha"
+                android:textAlignment="textEnd"
+                android:textSize="18sp"
+                android:textColor="@color/white"
+                />
         </LinearLayout>
 
 
@@ -52,19 +51,55 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:contentDescription="Image_Post"
+            android:background="@color/image_post"
             android:src="@mipmap/ic_launcher_round"
             android:layout_alignParentEnd="true"
             android:layout_alignParentStart="true"
             android:layout_below="@id/item_data_post"/>
 
         <LinearLayout
-            android:id="@+id/item_price_and_tittle"
+            android:id="@+id/item_reaction"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="18dp"
             android:orientation="horizontal"
             android:layout_alignParentEnd="true"
             android:layout_alignParentStart="true"
             android:layout_below="@id/item_image">
+
+            <ImageView
+                android:id="@+id/item_reaction_positive"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_feliz"
+                />
+
+            <ImageView
+                android:id="@+id/item_reaction_negative"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_triste"
+                />
+            
+            <TextView
+                android:id="@+id/item_like_count"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:text="0 Likes"
+                android:textAlignment="textEnd"
+                android:textSize="18sp"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/item_price_and_tittle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@id/item_reaction">
             <TextView
                 android:id="@+id/item_tittle"
                 android:layout_width="190dp"
@@ -94,7 +129,7 @@
             android:textSize="15sp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentStart="true"
-            android:layout_below="@id/item_price_and_tittle"/>
+            android:layout_below="@+id/item_price_and_tittle"/>
 
         <TextView
             android:id="@+id/item_description"
@@ -119,6 +154,36 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentStart="true"
             android:layout_below="@id/item_description"/>
+
+        <LinearLayout
+            android:id="@+id/item_store"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_below="@id/item_location"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/item_product_count"
+                android:layout_width="210dp"
+                android:layout_height="25dp"
+                android:text="0 Disponible"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/item_btn_pedir"
+                android:layout_width="150dp"
+                android:layout_height="48dp"
+                android:background="@color/cyan"
+                android:backgroundTint="@color/cyan"
+                android:text="Pedir"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
 
     </RelativeLayout>
 

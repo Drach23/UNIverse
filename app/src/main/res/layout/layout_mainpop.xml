@@ -3,7 +3,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@color/white"
+    android:background="#49566F"
     android:padding="10dp"
     android:animateLayoutChanges="true">
 
@@ -12,7 +12,7 @@
         android:layout_width="300dp"
         android:layout_height="55dp"
         android:text="Visualizar Perfil"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:padding="12dp"
         android:clickable="true"
         android:focusable="true"
@@ -25,7 +25,7 @@
         android:layout_width="280dp"
         android:layout_height="55dp"
         android:text="Cerrar Sesión"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:padding="12dp"
         android:clickable="true"
         android:focusable="true"

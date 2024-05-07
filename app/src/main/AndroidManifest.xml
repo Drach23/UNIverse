@@ -13,13 +13,13 @@
         android:theme="@style/Theme.UNIverse"
         tools:targetApi="31">
         <activity
-            android:name=".CreatePostsActivity"
+            android:name=".post_feed.CreatePostsActivity"
             android:exported="true" />
         <activity
             android:name=".PerfilActivity"
             android:exported="true" />
         <activity
-            android:name=".UniverseActivity"
+            android:name=".start_pages.UniverseActivity"
             android:exported="true"
             android:theme="@style/splashTheme">
             <intent-filter>
@@ -29,7 +29,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".RegisterActivity"
+            android:name=".start_pages.RegisterActivity"
             android:exported="true" />
         <activity
             android:name=".HomePageActivity"

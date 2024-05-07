@@ -1,3 +1,5 @@
+package com.unitech.universe.tool_bars
+
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
@@ -9,10 +11,9 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.unitech.universe.PerfilActivity
 import com.unitech.universe.R
-import com.unitech.universe.UniverseActivity
+import com.unitech.universe.start_pages.UniverseActivity
 
 object MenuUtils {
-
     private var auth: FirebaseAuth? = null // Cambiado a nullable para evitar NullPointerExceptions
 
     private fun initializeAuth() {

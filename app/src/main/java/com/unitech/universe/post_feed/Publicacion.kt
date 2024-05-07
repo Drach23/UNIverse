@@ -1,4 +1,4 @@
-package com.unitech.universe
+package com.unitech.universe.post_feed
 
 data class Publicacion(
     var usuarioId: String = "",

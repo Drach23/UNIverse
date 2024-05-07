@@ -1,17 +1,19 @@
 package com.unitech.universe
 
-import PostAdapter
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.unitech.universe.post_feed.PostAdapter
+import com.unitech.universe.tool_bars.MenuUtils
+import com.unitech.universe.tool_bars.NavUtils
+
 
 class HomePageActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
@@ -27,23 +29,25 @@ class HomePageActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
-        // Inicializa firebaseService aquí
-        firebaseService = FirebaseService()
 
-        // Inicializar RecyclerView
-        recyclerView = findViewById(R.id.recyclerView)
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        startFeed()
 
-        // Inicializar PublicacionAdapter
-        adapter = PostAdapter(emptyList())
-        recyclerView.adapter = adapter
+        // ------------------ Navegadores ----------------------------
+        showUserNameActive() // Busqueda de usuario
 
-        showUserNameActive()
+        //------------------- Barra de navegacion ---------------------
         bottomNavigationView = findViewById(R.id.bottom_navigation)
 
+        // Recibe el ID del ítem seleccionado
+        val selectedTabId = intent.getIntExtra("selected_tab_id", R.id.nav_home)
+
+        // Marca el ítem correspondiente del BottomNavigationView como seleccionado
+        bottomNavigationView.selectedItemId = selectedTabId
+
+        // Configura el BottomNavigationView como antes
         bottomNavigationView.setOnItemSelectedListener { menuItem ->
             NavUtils.handleNavigationItemSelected(this, menuItem)
-            return@setOnItemSelectedListener true
+            true
         }
 
         // Activa el hamburger - Despliega menu lateral
@@ -59,6 +63,20 @@ class HomePageActivity : AppCompatActivity() {
 
     }
 
+    // Inicializacion de Feed e instancias necesarias
+    private fun startFeed(){
+        // Inicializa firebaseService aquí
+        firebaseService = FirebaseService()
+
+        // Inicializar RecyclerView
+        recyclerView = findViewById(R.id.recyclerView)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+
+        // Inicializar PublicacionAdapter
+        adapter = PostAdapter(emptyList())
+        recyclerView.adapter = adapter
+    }
+
     private fun leerPublicaciones() {
         // Leer las publicaciones de Firebase usando FirebaseService
         firebaseService.leerPublicaciones { publicaciones ->
@@ -67,13 +85,9 @@ class HomePageActivity : AppCompatActivity() {
         }
     }
 
-    private fun showMessage(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-    }
-
-
-    // Muestra el nombre del usuario con sesion abierta
     private fun showUserNameActive(){
+        auth = FirebaseAuth.getInstance()
+        db = FirebaseFirestore.getInstance()
         val usernameTextView: TextView = findViewById(R.id.username)
         // Obtén el usuario actual
         val currentUser = auth.currentUser
@@ -101,6 +115,11 @@ class HomePageActivity : AppCompatActivity() {
             // El usuario no está autenticado, puedes redirigirlo al inicio de sesión o realizar alguna otra acción
             showMessage("El usuario no está autenticado")
         }
+    }
+
+    // ----------------- Mostrar errores ------------------------------
+    private fun showMessage(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
 }

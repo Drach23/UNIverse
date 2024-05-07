@@ -1,4 +1,4 @@
-package com.unitech.universe
+package com.unitech.universe.start_pages
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -7,6 +7,8 @@ import android.view.View
 import android.widget.EditText
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import com.unitech.universe.HomePageActivity
+import com.unitech.universe.R
 
 class UniverseActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CreatePostsActivity"
+    tools:context=".post_feed.CreatePostsActivity"
     android:background="@color/backgroundUniverse">
     <include layout="@layout/activity_actionbar"></include>
     <include layout="@layout/activity_navbar"></include>
@@ -34,7 +34,8 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp">
 
             <Button
                 android:id="@+id/btn_photo"
@@ -55,10 +56,6 @@
                 android:text="DELETE" />
 
         </LinearLayout>
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="10dp" />
 
         <EditText
             android:id="@+id/name_product_post"
@@ -120,14 +117,11 @@
             android:inputType="text"
             android:textColor="@color/white" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="15dp" />
-
         <Button
             android:id="@+id/btn_add"
             android:layout_width="250dp"
             android:layout_height="50dp"
+            android:layout_marginTop="10dp"
             android:text="PUBLICAR"
             android:textSize="25sp"
             android:background="@color/sky_blue_button"/>

@@ -1,11 +1,15 @@
 package com.unitech.universe
 import android.content.Intent
-import com.google.firebase.database.*
 import com.google.firebase.storage.*
 import android.net.Uri
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
+import com.unitech.universe.post_feed.Publicacion
+import com.unitech.universe.start_pages.UniverseActivity
 
 // Esta clase esta diseñada solamente para los servicios de Posteo de Publicaciones
 
@@ -97,4 +101,5 @@ class FirebaseService : AppCompatActivity() {
                 println("Ocurrio un erro: ${error.message}")
             }
     }
+
 }

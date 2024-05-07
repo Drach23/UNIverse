@@ -1,4 +1,4 @@
-package com.unitech.universe
+package com.unitech.universe.post_feed
 
 import android.app.Activity
 import android.content.Intent
@@ -14,6 +14,10 @@ import android.widget.Toast
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.unitech.universe.FirebaseService
+import com.unitech.universe.tool_bars.NavUtils
+import com.unitech.universe.R
+import com.unitech.universe.tool_bars.MenuUtils
 
 class CreatePostsActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
@@ -46,12 +50,22 @@ class CreatePostsActivity : AppCompatActivity() {
 
         // ------------------ Navegadores ----------------------------
         showUserNameActive() // Busqueda de usuario
+
+        //------------------- Barra de navegacion ---------------------
         bottomNavigationView = findViewById(R.id.bottom_navigation)
 
+        // Recibe el ID del ítem seleccionado
+        val selectedTabId = intent.getIntExtra("selected_tab_id", R.id.nav_home)
+
+        // Marca el ítem correspondiente del BottomNavigationView como seleccionado
+        bottomNavigationView.selectedItemId = selectedTabId
+
+        // Configura el BottomNavigationView como antes
         bottomNavigationView.setOnItemSelectedListener { menuItem ->
             NavUtils.handleNavigationItemSelected(this, menuItem)
-            return@setOnItemSelectedListener true
+            true
         }
+
 
         // Activa el hamburger - Despliega menu lateral
         val menuButton: ImageButton = findViewById(R.id.menuButton)
@@ -68,7 +82,7 @@ class CreatePostsActivity : AppCompatActivity() {
         imagenImageView = findViewById(R.id.photo_post)
         buttonImage = findViewById(R.id.btn_photo)
         crearPublicacionButton = findViewById(R.id.btn_add)
-//        publicacionesTextView = findViewById(R.id.publicacionesTextView)
+
 
         // Configurar el botón para seleccionar imagen
         buttonImage.setOnClickListener {
@@ -139,11 +153,6 @@ class CreatePostsActivity : AppCompatActivity() {
         const val REQUEST_CODE_SELECCIONAR_IMAGEN = 1
     }
 
-    // -----------------------------------------------------------------------
-    // ----------- Para mostrar mensajes de Error ---------------------
-    private fun showMessage(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-    }
 
     // -------------- Muestra el nombre del usuario con sesion abierta
     private fun showUserNameActive(){
@@ -174,5 +183,11 @@ class CreatePostsActivity : AppCompatActivity() {
             // El usuario no está autenticado, puedes redirigirlo al inicio de sesión o realizar alguna otra acción
             showMessage("El usuario no está autenticado")
         }
+    }
+
+    // -----------------------------------------------------------------------
+    // ----------- Para mostrar mensajes de Error ---------------------
+    private fun showMessage(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 }
