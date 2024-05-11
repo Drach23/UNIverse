@@ -56,5 +56,23 @@ object MenuUtils {
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             context.startActivity(intent)
         }
+
+        popupView.findViewById<TextView>(R.id.menu_item_3).setOnClickListener {
+            Toast.makeText(context, "Mostrando Ventas", Toast.LENGTH_SHORT).show()
+            popupWindow.dismiss()
+
+            val intent = Intent(context, PerfilActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            context.startActivity(intent)
+        }
+
+        popupView.findViewById<TextView>(R.id.menu_item_4).setOnClickListener {
+            Toast.makeText(context, "Mostrando Inventario", Toast.LENGTH_SHORT).show()
+            popupWindow.dismiss()
+
+            val intent = Intent(context, PerfilActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            context.startActivity(intent)
+        }
     }
 }

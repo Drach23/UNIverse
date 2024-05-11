@@ -6,10 +6,14 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
 import com.unitech.universe.post_feed.Publicacion
 import com.unitech.universe.start_pages.UniverseActivity
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 // Esta clase esta diseñada solamente para los servicios de Posteo de Publicaciones
 
@@ -36,14 +40,26 @@ class FirebaseService : AppCompatActivity() {
     fun guardarPublicacion(
         usuarioId: String,
         titulo: String,
-        costo: String,
+        costo: Float,
         categoria: String,
         descripcion: String,
         ubicacion: String,
-        imagenUrl: String
+        stock: Int,
+        imagenUrl: String,
     ) {
-        // Obtén una instancia de FirebaseFirestore
+        // Obtener una instancia de FirebaseFirestore
         val db = FirebaseFirestore.getInstance()
+
+        // Obtener la fecha actual
+        val calendar = Calendar.getInstance()
+
+        // Formatear la fecha en el formato dd/mm/yy
+        val dateFormat = SimpleDateFormat("dd/MM/yy", Locale.getDefault())
+        val fechaPublicacion = dateFormat.format(calendar.time)
+
+        // Inicializar los arrays de likes y dislikes vacíos
+        val likes: List<String> = listOf()
+        val dislikes: List<String> = listOf()
 
         // Crear un mapa con los datos de la publicación
         val publicacion = hashMapOf(
@@ -53,7 +69,11 @@ class FirebaseService : AppCompatActivity() {
             "categoria" to categoria,
             "descripcion" to descripcion,
             "ubicacion" to ubicacion,
-            "imagenUrl" to imagenUrl
+            "stock" to stock,
+            "imagenUrl" to imagenUrl,
+            "likes" to likes,
+            "dislikes" to dislikes,
+            "fechaPublicacion" to fechaPublicacion
         )
 
         // Guardar la publicación en la colección "publicaciones"
@@ -99,6 +119,36 @@ class FirebaseService : AppCompatActivity() {
             .addOnFailureListener { error ->
                 // Manejar error
                 println("Ocurrio un erro: ${error.message}")
+            }
+    }
+
+    // Función para agregar un like a una publicación
+    fun addLike(postId: String, userId: String) {
+        val db = FirebaseFirestore.getInstance()
+        val postRef = db.collection("publicaciones").document(postId)
+
+        postRef.update("likesUsuarios", FieldValue.arrayUnion(userId))
+            .addOnSuccessListener {
+                // Actualización exitosa del like
+                println("Like agregado con éxito a la publicación $postId")
+            }
+            .addOnFailureListener { error ->
+                println("Error al agregar like: ${error.message}")
+            }
+    }
+
+    // Función para quitar un like de una publicación
+    fun removeLike(postId: String, userId: String) {
+        val db = FirebaseFirestore.getInstance()
+        val postRef = db.collection("publicaciones").document(postId)
+
+        postRef.update("likesUsuarios", FieldValue.arrayRemove(userId))
+            .addOnSuccessListener {
+                // Actualización exitosa del like
+                println("Like eliminado con éxito de la publicación $postId")
+            }
+            .addOnFailureListener { error ->
+                println("Error al eliminar like: ${error.message}")
             }
     }
 
