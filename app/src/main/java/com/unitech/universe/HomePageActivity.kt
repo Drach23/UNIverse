@@ -23,7 +23,6 @@ class HomePageActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: PostAdapter
     private lateinit var firebaseService: FirebaseService
-    private var publicaciones: List<Publicacion> = listOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,8 +32,6 @@ class HomePageActivity : AppCompatActivity() {
         db = FirebaseFirestore.getInstance()
         // Inicializa firebaseService aquí
         firebaseService = FirebaseService()
-        // Inicializa el adapter aquí
-        startFeed()
 
         // ------------------ Navegadores ----------------------------
         showUserNameActive() // Busqueda de usuario
@@ -60,29 +57,38 @@ class HomePageActivity : AppCompatActivity() {
             MenuUtils.showPopupMenu(this, it)
         }
 
-        // Cargar publicaciones de Firebase
-        leerPublicaciones()
-
-    }
-
-    // Inicializacion de Feed e instancias necesarias
-    private fun startFeed(){
-        // Inicializar RecyclerView
+        // Inicializa el RecyclerView
         recyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        // Inicializar PublicacionAdapter
-        adapter = PostAdapter(this@HomePageActivity, emptyList())
-        recyclerView.adapter = adapter
+        // Llama a la función para obtener las publicaciones
+        getPublicacionesFromFirestore()
+
     }
 
-    private fun leerPublicaciones() {
-        // Leer las publicaciones de Firebase usando FirebaseService
-        firebaseService.leerPublicaciones { publicaciones ->
-            // Actualiza las publicaciones en el adapter
-            adapter.actualizarPublicaciones(publicaciones)
-        }
+    private fun getPublicacionesFromFirestore() {
+        val db = FirebaseFirestore.getInstance()
+        db.collection("publicaciones")
+            .addSnapshotListener { snapshots, exception ->
+                if (exception != null) {
+                    showMessage("Error getting documents: $exception")
+                    return@addSnapshotListener
+                }
+
+                val publicacionesList = mutableListOf<Publicacion>()
+                if (snapshots != null) {
+                    for (document in snapshots) {
+                        val publicacion = document.toObject(Publicacion::class.java)
+                        publicacion.uid = document.id
+                        publicacionesList.add(publicacion)
+                    }
+                }
+                // Pasar la lista de publicaciones al adaptador
+                adapter = PostAdapter(publicacionesList)
+                recyclerView.adapter = adapter
+            }
     }
+
 
     private fun showUserNameActive() {
         // Encuentra la TextView para mostrar el nombre del usuario
