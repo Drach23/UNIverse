@@ -72,6 +72,7 @@ class MakeOrderActivity : AppCompatActivity() {
 
         // Llamar a showPublicacionDetails() después de inicializar las vistas
         showPublicacionDetails()
+        goBack()
     }
 
     private fun showPublicacionDetails() {
@@ -151,6 +152,11 @@ class MakeOrderActivity : AppCompatActivity() {
         }
     }
 
+    private fun goBack(){
+        orderCancel.setOnClickListener{
+            finish();
+        }
+    }
     // ----------------- Mostrar errores ------------------------------
     private fun showMessage(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
