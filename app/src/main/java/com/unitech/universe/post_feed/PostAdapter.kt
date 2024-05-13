@@ -103,6 +103,7 @@ class PostAdapter(private val publicaciones: List<Publicacion>) : RecyclerView.A
                 putExtra("costo", publicacion.costo)
                 putExtra("stock", publicacion.stock)
                 putExtra("uid", publicacion.uid)
+                putExtra("imagenUrl", publicacion.imagenUrl)
             }
             // Inicia la actividad MakeOrderActivity
             holder.itemView.context.startActivity(intent)
