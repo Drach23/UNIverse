@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.squareup.picasso.Picasso
 import com.unitech.universe.tool_bars.MenuUtils
 
 class MakeOrderActivity : AppCompatActivity() {
@@ -38,15 +39,19 @@ class MakeOrderActivity : AppCompatActivity() {
         db = FirebaseFirestore.getInstance()
 
         // ------------------ Navegadores ----------------------------
-        showUserNameActive() // Busqueda de usuario
-
+        inicializaciones()
+        showUserNameActive() // Busqueda de usuario )
         // Activa el hamburger - Despliega menu lateral
         val menuButton: ImageButton = findViewById(R.id.menuButton)
         menuButton.setOnClickListener {
             MenuUtils.showPopupMenu(this, it)
         }
 
-        inicializaciones()
+        // Recibe la URL de la imagen del intento y carga la imagen
+        val imageUrl = intent.getStringExtra("imagenUrl")
+        if (imageUrl != null) {
+            Picasso.get().load(imageUrl).into(orderImage)
+        }
 
     }
 
@@ -81,7 +86,7 @@ class MakeOrderActivity : AppCompatActivity() {
                 val nombreVendedor = documentSnapshot.getString("firstName") ?: "Desconocido"
                 val apellidoVendedor = documentSnapshot.getString("lastName") ?: "Desconocido"
                 val tel = documentSnapshot.getString("phone") ?: "Desconocido"
-                orderNameVendedor.text = nombreVendedor + apellidoVendedor
+                orderNameVendedor.text = nombreVendedor +" " + apellidoVendedor
                 orderTelVendedor.text = tel
             }
             .addOnFailureListener {
@@ -96,8 +101,10 @@ class MakeOrderActivity : AppCompatActivity() {
     }
 
     private fun showUserNameActive() {
-        // Encuentra la TextView para mostrar el nombre del usuario
+        //titulo del actionbar
         val usernameTextView: TextView = findViewById(R.id.username)
+        // Obtén la referencia a la TextView donde se mostrará el nombre del comprador
+        val orderNameComprador: TextView = findViewById(R.id.order_name_comprador)
 
         // Obtén el usuario actual
         val currentUser = auth.currentUser
@@ -116,11 +123,16 @@ class MakeOrderActivity : AppCompatActivity() {
                     // Verifica si el documento existe y contiene datos
                     if (document?.exists() == true) {
                         // Obtén el nombre de usuario
+                        val name = document.getString("firstName")
+                        val lastname = document.getString("lastName")
+                        val phone = document.getString("phone")
                         val username = document.getString("username")
 
                         // Verifica si el nombre de usuario es nulo o vacío
-                        if (!username.isNullOrBlank()) {
-                            // Muestra el nombre de usuario en la TextView
+                        if (!name.isNullOrBlank()) {
+                            // Muestra el nombre de usuario en la TextView correspondiente
+                            orderNameComprador.text = name +" "+ lastname
+                            orderTelComprador.text = phone
                             usernameTextView.text = username
                         } else {
                             showMessage("No se encontró el nombre de usuario.")
