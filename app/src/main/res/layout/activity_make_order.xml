@@ -6,8 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".MakeOrderActivity"
     android:background="@color/backgroundUniverse">
+
+<!--    Importacion del ActionBar (Menu superior)-->
     <include layout="@layout/activity_actionbar"></include>
-    <include layout="@layout/activity_navbar"></include>
+
+<!--    Inicio de la seccion para realizar una orden-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -16,55 +19,83 @@
         android:orientation="vertical"
         android:visibility="visible">
         <LinearLayout
-            android:layout_width="350dp"
-            android:layout_height="125dp"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:padding="5dp"
             android:orientation="horizontal"
-            android:layout_gravity="center">
+            android:layout_gravity="center"
+            android:background="@color/image_post">
+
+<!--            Imagen del producto a ordenar-->
             <androidx.cardview.widget.CardView
-                android:layout_width="120dp"
-                android:layout_height="120dp">
+                android:layout_marginStart="15dp"
+                android:layout_width="140dp"
+                android:layout_height="140dp">
                 <ImageView
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
+                    android:id="@+id/order_image"
+                    android:layout_width="140dp"
+                    android:layout_height="140dp"
                     app:srcCompat="@drawable/ic_foto_update"
                     android:contentDescription="Imagen de Producto"/>
             </androidx.cardview.widget.CardView>
+
+<!--            Seccion del Nombre y Descripcion del producto-->
             <LinearLayout
                 android:layout_width="230dp"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:layout_gravity="center">
 
+<!--                Titutlo del Producto-->
                 <TextView
+                    android:id="@+id/order_tittle"
                     android:layout_width="match_parent"
-                    android:layout_height="52dp"
-                    android:paddingStart="10dp"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
                     android:text="Titulo"
                     android:textColor="@color/white"
-                    android:textSize="22dp"
+                    android:textSize="22sp"
                     android:textStyle="bold"/>
 
+<!--                Descripcion del Producto-->
                 <TextView
+                    android:id="@+id/order_desc_product"
                     android:layout_width="match_parent"
-                    android:layout_height="68dp"
-                    android:paddingStart="10dp"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
                     android:text="Descripcion"
                     android:textColor="@color/white"
-                    android:textSize="20dp" />
+                    android:textSize="20sp" />
             </LinearLayout>
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="350dp"
+
+<!--        Precio unitario del Producto-->
+        <TextView
+            android:id="@+id/order_cost"
+            android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal">
+            android:text="Precio"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textAlignment="center"
+            android:background="@color/image_post"/>
+
+
+        <!--        Seccion de cantidad de producto a ordenar-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:orientation="horizontal"
+            android:background="@color/image_post">
             <EditText
+                android:id="@+id/order_cant_product"
                 android:layout_width="210dp"
                 android:layout_height="48dp"
+                android:layout_marginStart="20dp"
                 android:hint="1"
                 android:textColorHint="@color/gray_toolbar"
                 android:background="@color/gray"
-                android:textSize="25dp"
+                android:textSize="20sp"
                 android:padding="10dp"
                 android:textAlignment="textEnd"/>
             <TextView
@@ -72,8 +103,109 @@
                 android:layout_height="48dp"
                 android:text="piezas"
                 android:textColor="@color/white"
-                android:textSize="25dp"
+                android:textSize="20sp"
                 android:padding="10dp"/>
+        </LinearLayout>
+
+        <!--        Precio total de Orden-->
+        <TextView
+            android:id="@+id/order_total"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Total"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:textSize="28sp"
+            android:textAlignment="center"
+            android:background="@color/image_post"/>
+
+
+<!--        Seccion para la informacion del Vendedor-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Datos de Vendedor"
+            android:textSize="24sp"
+            android:textColor="@color/white"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/order_name_vendedor"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:padding="5dp"
+            android:text="Nombre Vendedor"
+            android:textSize="20sp"
+            android:textColor="@color/white"/>
+        <TextView
+            android:id="@+id/order_tel_vendedor"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:padding="5dp"
+            android:text="Telefono"
+            android:textSize="20sp"
+            android:textColor="@color/white"/>
+
+        <!--        Seccion para la informacion del Comprador-->
+        <TextView
+            android:id="@+id/order_name_comprador"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Datos de Usuario"
+            android:textSize="24sp"
+            android:textColor="@color/white"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/order_tel_comprador"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:padding="5dp"
+            android:text="Nombre Cliente"
+            android:textSize="20sp"
+            android:textColor="@color/white"/>
+        <TextView
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:padding="5dp"
+            android:text="Telefono"
+            android:textSize="20sp"
+            android:textColor="@color/white"/>
+
+<!--        Seccion de botones-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/order_cancel"
+                android:layout_width="180dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="5dp"
+                android:background="@color/red"
+                android:text="CANCELAR"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+            <Button
+                android:id="@+id/order_pedir"
+                android:layout_width="180dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="10dp"
+                android:background="@color/cyan"
+                android:text="PEDIR"
+                android:textSize="24sp"
+                android:textStyle="bold"/>
         </LinearLayout>
     </LinearLayout>
 
