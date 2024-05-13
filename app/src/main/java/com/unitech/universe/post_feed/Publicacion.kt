@@ -11,9 +11,9 @@ data  class Publicacion(
     var ubicacion: String? = null,
     var stock: Int? = null,
     var imagenUrl: String? = null,
-    var likesUsuarios: List<String>? = listOf(),
-    var dislikesUsuarios: List<String>? = listOf(),
-    var date: String? = null
+    var likes: List<String>? = listOf(),
+    var dislikes: List<String>? = listOf(),
+    var fechaPublicacion: String? = null
 
 ){
     @Exclude
@@ -30,8 +30,8 @@ data  class Publicacion(
         ubicacion = null,
         stock = null,
         imagenUrl = null,
-        likesUsuarios = listOf(),
-        dislikesUsuarios = listOf(),
-        date = null
+        likes = listOf(),
+        dislikes = listOf(),
+        fechaPublicacion = null
     )
 }
