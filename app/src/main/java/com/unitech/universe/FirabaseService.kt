@@ -81,14 +81,14 @@ class FirebaseService : AppCompatActivity() {
             .add(publicacion)
             .addOnSuccessListener {
 
-                    println("Publicación guardada con éxito")
-                    val intent = Intent(this, UniverseActivity::class.java)
-                    startActivity(intent)
-                    finish()
-                }
-                .addOnFailureListener { error ->
-                    println("Error al guardar la publicación: ${error.message}")
-                }
-        }
+                println("Publicación guardada con éxito")
+                val intent = Intent(this, UniverseActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+            .addOnFailureListener { error ->
+                println("Error al guardar la publicación: ${error.message}")
+            }
+    }
 
 }

@@ -52,6 +52,8 @@ class PostAdapter(private val publicaciones: List<Publicacion>) : RecyclerView.A
         val disliked = publicacion.dislikes?.contains(userId) ?: false
         setColorLike(liked, holder.likeImageView)
         setColorDislike(disliked, holder.dilikeImageView)
+
+        // Obtener imagen de Firebase
         Picasso.get()
             .load(publicacion.imagenUrl)
             .into(holder.imagenImageView)
