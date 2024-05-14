@@ -1,5 +1,6 @@
 package com.unitech.universe
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -51,6 +52,10 @@ class MakeOrderActivity : AppCompatActivity() {
         val imageUrl = intent.getStringExtra("imagenUrl")
         if (imageUrl != null) {
             Picasso.get().load(imageUrl).into(orderImage)
+        }
+
+        orderPedir.setOnClickListener{
+            setOrder();
         }
 
     }
@@ -157,6 +162,94 @@ class MakeOrderActivity : AppCompatActivity() {
             finish();
         }
     }
+
+    private fun setOrder(){
+        // Obtener los datos del pedido
+        val titulo = orderTitle.text.toString()
+        val costo = orderCost.text.toString().substringAfter(":").trim().toFloat()
+        val cantidad = orderCantProduct.text.toString().toInt()
+        val comprador = orderNameComprador.text.toString() // Obtener el nombre del comprador
+        val telComprador = orderTelComprador.text.toString() // Obtener el teléfono del comprador
+        val productUid = intent.getStringExtra("uid")
+
+        // Crear un mapa con los datos del pedido
+        val pedido = hashMapOf(
+            "titulo" to titulo,
+            "costo" to costo,
+            "cantidad" to cantidad,
+            "comprador" to comprador,
+            "telComprador" to telComprador
+            // Puedes agregar más campos del pedido aquí si es necesario
+        )
+
+        // Agregar el pedido a la colección "pedidos" en Firestore
+        db.collection("pedidos")
+            .add(pedido)
+            .addOnSuccessListener { documentReference ->
+                showMessage("Pedido enviado con éxito: ${documentReference.id}")
+
+                // Actualizar la cantidad del producto en la base de datos del vendedor
+                if (productUid != null) {
+                    updateSellerProductQuantity(productUid, cantidad)
+                } else {
+                    showMessage("Error: el UID del producto es nulo.")
+                }
+            }
+            .addOnFailureListener { e ->
+                showMessage("Error al enviar el pedido: $e")
+            }
+    }
+
+    private fun updateSellerProductQuantity(productId: String, quantityToDeduct: Int) {
+        // Obtener la referencia al documento del producto del vendedor
+        val productRef = db.collection("publicaciones").document(productId)
+
+        // Obtener la cantidad actual del producto del vendedor
+        productRef.get()
+            .addOnSuccessListener { documentSnapshot ->
+                if (documentSnapshot.exists()) {
+                    val currentQuantity = documentSnapshot.getLong("stock") ?: 0
+
+                    // Restar la cantidad del pedido de la cantidad actual del producto del vendedor
+                    val newQuantity = currentQuantity - quantityToDeduct
+
+                    // Verificar si la nueva cantidad es positiva antes de actualizarla
+                    if (newQuantity >= 0) {
+                        // Actualizar la cantidad del producto en la base de datos del vendedor
+                        updateProductQuantity(productId, newQuantity)
+                    } else {
+                        showMessage("La cantidad del producto no puede ser negativa.")
+                    }
+                } else {
+                    showMessage("El producto del vendedor no existe.")
+                }
+            }
+            .addOnFailureListener { e ->
+                showMessage("Error al obtener el producto del vendedor: $e")
+            }
+    }
+
+    private fun updateProductQuantity(productId: String, newQuantity: Long) {
+        // Obtener la referencia al documento del producto en la base de datos
+        val productRef = db.collection("publicaciones").document(productId)
+
+        // Actualizar la cantidad del producto con el nuevo valor
+        productRef.update("stock", newQuantity)
+            .addOnSuccessListener {
+                showMessage("Cantidad del producto actualizada exitosamente.")
+                redirectToHomePage()
+            }
+            .addOnFailureListener { e ->
+                showMessage("Error al actualizar la cantidad del producto: $e")
+            }
+    }
+
+    private fun redirectToHomePage() {
+        val intent = Intent(this, HomePageActivity::class.java)
+        startActivity(intent)
+        finish() // Finaliza la actividad actual para que el usuario no pueda volver atrás con el botón de retroceso
+    }
+
     // ----------------- Mostrar errores ------------------------------
     private fun showMessage(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
