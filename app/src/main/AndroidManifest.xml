@@ -13,10 +13,13 @@
         android:theme="@style/Theme.UNIverse"
         tools:targetApi="31">
         <activity
+            android:name=".seller_views.ViewsOrdersActivity"
+            android:exported="false" />
+        <activity
             android:name=".MakeOrderActivity"
             android:exported="false" />
         <activity
-            android:name=".EditPostActivity"
+            android:name=".seller_views.EditPostActivity"
             android:exported="false" />
         <activity
             android:name=".post_feed.CreatePostsActivity"
