@@ -95,9 +95,6 @@ class CreatePostsActivity : AppCompatActivity() {
             crearPublicacion()
         }
 
-        // Leer publicaciones de Firebase
-//        leerPublicaciones()
-
     }
 
     private fun seleccionarImagen() {

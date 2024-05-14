@@ -87,6 +87,7 @@ class MakeOrderActivity : AppCompatActivity() {
         val costo = intent.getFloatExtra("costo", 0.0f)
         val userVendedor = intent.getStringExtra("usuarioId")
         val vendedor = db.collection("users").document(userVendedor!!)
+
         vendedor.get()
             .addOnSuccessListener { documentSnapshot ->
                 val nombreVendedor = documentSnapshot.getString("firstName") ?: "Desconocido"
