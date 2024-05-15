@@ -13,6 +13,9 @@
         android:theme="@style/Theme.UNIverse"
         tools:targetApi="31">
         <activity
+            android:name=".OrdersCheckUserActivity"
+            android:exported="false" />
+        <activity
             android:name=".seller_views.ViewsOrdersActivity"
             android:exported="false" />
         <activity
