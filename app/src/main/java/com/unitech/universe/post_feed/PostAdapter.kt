@@ -12,7 +12,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.squareup.picasso.Picasso
-import com.unitech.universe.MakeOrderActivity
+import com.unitech.universe.user_views.MakeOrderActivity
 import com.unitech.universe.R
 
 class PostAdapter(private val publicaciones: List<Publicacion>) : RecyclerView.Adapter<PostAdapter.PostViewHolder>() {

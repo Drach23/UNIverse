@@ -1,4 +1,4 @@
-package com.unitech.universe
+package com.unitech.universe.user_views
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -11,10 +11,11 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.squareup.picasso.Picasso
+import com.unitech.universe.HomePageActivity
+import com.unitech.universe.R
 import com.unitech.universe.tool_bars.MenuUtils
 
 class MakeOrderActivity : AppCompatActivity() {
