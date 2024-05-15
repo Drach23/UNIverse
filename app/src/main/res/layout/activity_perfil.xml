@@ -9,6 +9,7 @@
     <include layout="@layout/activity_actionbar"></include>
 
     <LinearLayout
+        android:id="@+id/linearLayout_perfil"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -17,7 +18,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="80dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="60dp"
         android:background="@color/perfil">
 
         <LinearLayout
@@ -129,6 +130,7 @@
             android:id="@+id/emailDEditText"
             android:layout_width="360dp"
             android:layout_height="25dp"
+            android:layout_marginBottom="30dp"
             android:paddingStart="15dp"
             android:paddingEnd="5dp"
             android:textColor="@color/white"
@@ -136,26 +138,22 @@
             android:textSize="20sp"/>
 
     </LinearLayout>
-
-    <com.google.android.exoplayer2.ui.StyledPlayerControlView
-        android:id="@+id/exo_player_view"
-        android:layout_width="400dp"
-        android:layout_height="350dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginBottom="90dp"
-        />
-
-    <VideoView
-        android:id="@+id/videoView"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="90dp"
-        />
+        app:layout_constraintTop_toBottomOf="@id/linearLayout_perfil"
+        android:layout_marginBottom="20dp">
+        <VideoView
+            android:id="@+id/videoView"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            />
+    </LinearLayout>
+
+
 
     <include layout="@layout/activity_navbar"></include>
 
