@@ -39,7 +39,7 @@ object MenuUtils {
         }
 
         // Configurar eventos de clic en los ítems del menú
-        popupView.findViewById<TextView>(R.id.menu_item_1).setOnClickListener {
+        popupView.findViewById<LinearLayout>(R.id.menu_item_1).setOnClickListener {
             Toast.makeText(context, "Ver Perfil", Toast.LENGTH_SHORT).show()
             popupWindow.dismiss()
 
@@ -48,7 +48,7 @@ object MenuUtils {
             context.startActivity(intent)
         }
 
-        popupView.findViewById<TextView>(R.id.menu_item_2).setOnClickListener {
+        popupView.findViewById<LinearLayout>(R.id.menu_item_2).setOnClickListener {
             Toast.makeText(context, "Cerrando Sesión", Toast.LENGTH_SHORT).show()
             popupWindow.dismiss()
             // Cerrar sesión y redirigir a la pantalla de inicio de sesión
@@ -58,7 +58,7 @@ object MenuUtils {
             context.startActivity(intent)
         }
 
-        popupView.findViewById<TextView>(R.id.menu_item_3).setOnClickListener {
+        popupView.findViewById<LinearLayout>(R.id.menu_item_3).setOnClickListener {
             Toast.makeText(context, "Mostrando Ventas", Toast.LENGTH_SHORT).show()
             popupWindow.dismiss()
 
@@ -67,7 +67,7 @@ object MenuUtils {
             context.startActivity(intent)
         }
 
-        popupView.findViewById<TextView>(R.id.menu_item_4).setOnClickListener {
+        popupView.findViewById<LinearLayout>(R.id.menu_item_4).setOnClickListener {
             Toast.makeText(context, "Mostrando Inventario", Toast.LENGTH_SHORT).show()
             popupWindow.dismiss()
 

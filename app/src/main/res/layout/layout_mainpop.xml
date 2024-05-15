@@ -9,7 +9,7 @@
     android:animateLayoutChanges="true">
 
     <LinearLayout
-
+        android:id="@+id/menu_item_1"
         android:layout_width="280dp"
         android:layout_height="55dp"
         android:gravity="center_vertical"
@@ -27,7 +27,6 @@
             android:contentDescription="imagen"/>
 
         <TextView
-            android:id="@+id/menu_item_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Visualizar Perfil"
@@ -43,6 +42,7 @@
         android:background="#333C4F"/>
 
     <LinearLayout
+        android:id="@+id/menu_item_3"
         android:layout_width="280dp"
         android:layout_height="55dp"
         android:gravity="center_vertical"
@@ -60,7 +60,6 @@
             android:contentDescription="icon3"/>
 
         <TextView
-            android:id="@+id/menu_item_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Mis Ventas"
@@ -76,6 +75,7 @@
         android:background="#333C4F"/>
 
     <LinearLayout
+        android:id="@+id/menu_item_4"
         android:layout_width="280dp"
         android:layout_height="55dp"
         android:gravity="center_vertical"
@@ -93,7 +93,6 @@
             android:contentDescription="icon4"/>
 
         <TextView
-            android:id="@+id/menu_item_4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Mis Productos"
@@ -109,6 +108,7 @@
         android:background="#333C4F"/>
 
     <LinearLayout
+        android:id="@+id/menu_item_2"
         android:layout_width="280dp"
         android:layout_height="55dp"
         android:gravity="center_vertical"
@@ -126,7 +126,6 @@
             android:contentDescription="icon2"/>
 
         <TextView
-            android:id="@+id/menu_item_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Cerrar Sesión"
