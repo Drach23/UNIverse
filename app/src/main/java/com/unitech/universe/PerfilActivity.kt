@@ -139,9 +139,9 @@ class PerfilActivity : AppCompatActivity() {
             }
     }
 
-    fun video(){
+    fun video() {
         val video: VideoView = findViewById(R.id.videoView)
-        val videoPath:String = "android.resource://" + packageName + "/" + R.raw.depeache
+        val videoPath: String = "android.resource://" + packageName + "/" + R.raw.depeache
         val uri: Uri = Uri.parse(videoPath)
         video.setVideoURI(uri)
 
@@ -149,6 +149,11 @@ class PerfilActivity : AppCompatActivity() {
         video.setMediaController(mediaController)
         mediaController.setAnchorView(video)
 
+        // Configura el listener para iniciar el video cuando esté preparado
+        video.setOnPreparedListener {
+            it.isLooping = true // Si deseas que el video se repita automáticamente
+            video.start()
+        }
     }
     // ----------------- Mostrar errores ------------------------------
     private fun showMessage(message: String) {
