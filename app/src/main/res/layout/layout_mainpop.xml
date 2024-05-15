@@ -3,61 +3,139 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="#49566F"
+    android:background="#98333C4F"
+
     android:padding="10dp"
     android:animateLayoutChanges="true">
 
-    <TextView
-        android:id="@+id/menu_item_1"
-        android:layout_width="300dp"
-        android:layout_height="55dp"
-        android:text="Visualizar Perfil"
-        android:textColor="@color/white"
-        android:padding="12dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:layout_margin="5dp"
-        android:paddingStart="30dp"
-        android:textSize="20sp"/>
+    <LinearLayout
 
-    <TextView
-        android:id="@+id/menu_item_3"
         android:layout_width="280dp"
         android:layout_height="55dp"
-        android:text="Mis Ventas"
-        android:textColor="@color/white"
-        android:padding="12dp"
+        android:gravity="center_vertical"
         android:clickable="true"
         android:focusable="true"
         android:layout_margin="5dp"
-        android:paddingStart="30dp"
-        android:textSize="20sp"/>
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:onClick="onMenuItemClick">
 
-    <TextView
-        android:id="@+id/menu_item_4"
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_show_perfil"
+            android:contentDescription="imagen"/>
+
+        <TextView
+            android:id="@+id/menu_item_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Visualizar Perfil"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:layout_marginStart="20dp"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2.2dp"
+        android:background="#333C4F"/>
+
+    <LinearLayout
         android:layout_width="280dp"
         android:layout_height="55dp"
-        android:text="Mis Productos"
-        android:textColor="@color/white"
-        android:padding="12dp"
+        android:gravity="center_vertical"
         android:clickable="true"
         android:focusable="true"
         android:layout_margin="5dp"
-        android:paddingStart="30dp"
-        android:textSize="20sp"/>
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:onClick="onMenuItemClick">
 
-    <TextView
-        android:id="@+id/menu_item_2"
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_order"
+            android:contentDescription="icon3"/>
+
+        <TextView
+            android:id="@+id/menu_item_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mis Ventas"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:layout_marginStart="20dp"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2.2dp"
+        android:background="#333C4F"/>
+
+    <LinearLayout
         android:layout_width="280dp"
         android:layout_height="55dp"
-        android:text="Cerrar Sesión"
-        android:textColor="@color/white"
-        android:padding="12dp"
+        android:gravity="center_vertical"
         android:clickable="true"
         android:focusable="true"
         android:layout_margin="5dp"
-        android:paddingStart="30dp"
-        android:textSize="20sp"/>
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:onClick="onMenuItemClick">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_stock"
+            android:contentDescription="icon4"/>
+
+        <TextView
+            android:id="@+id/menu_item_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mis Productos"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:layout_marginStart="20dp"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2.2dp"
+        android:background="#333C4F"/>
+
+    <LinearLayout
+        android:layout_width="280dp"
+        android:layout_height="55dp"
+        android:gravity="center_vertical"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_margin="5dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:onClick="onMenuItemClick">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_logout"
+            android:contentDescription="icon2"/>
+
+        <TextView
+            android:id="@+id/menu_item_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cerrar Sesión"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:layout_marginStart="20dp"/>
+
+    </LinearLayout>
+
 
 
 
