@@ -130,6 +130,7 @@ class PostAdapter(private val publicaciones: List<Publicacion>) : RecyclerView.A
         val likeCountTextView: TextView = itemView.findViewById(R.id.item_like_count)
         val stockTextView: TextView = itemView.findViewById(R.id.item_product_count)
         val pedidoButton: Button = itemView.findViewById(R.id.item_btn_pedir)
+
     }
 
     fun setColorLike(liked: Boolean, likeButton: ImageView){

@@ -3,6 +3,8 @@ package com.unitech.universe
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
@@ -30,6 +32,7 @@ class MakeOrderActivity : AppCompatActivity() {
     private lateinit var orderTelComprador: TextView
     private lateinit var orderCancel: Button
     private lateinit var orderPedir: Button
+    private lateinit var cantidadEditText: EditText
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -74,6 +77,7 @@ class MakeOrderActivity : AppCompatActivity() {
         orderTelComprador = findViewById(R.id.order_tel_comprador)
         orderCancel = findViewById(R.id.order_cancel)
         orderPedir = findViewById(R.id.order_pedir)
+        cantidadEditText = findViewById(R.id.order_cant_product)
 
         // Llamar a showPublicacionDetails() después de inicializar las vistas
         showPublicacionDetails()
@@ -87,6 +91,7 @@ class MakeOrderActivity : AppCompatActivity() {
         val costo = intent.getFloatExtra("costo", 0.0f)
         val userVendedor = intent.getStringExtra("usuarioId")
         val vendedor = db.collection("users").document(userVendedor!!)
+
         vendedor.get()
             .addOnSuccessListener { documentSnapshot ->
                 val nombreVendedor = documentSnapshot.getString("firstName") ?: "Desconocido"
@@ -103,7 +108,40 @@ class MakeOrderActivity : AppCompatActivity() {
         orderTitle.text = titulo
         orderDescProduct.text = descripcion
         orderCost.text = "Precio Unitario: $costo" // Formatea como desees
-        // Muestra otros datos según sea necesario
+        val cantidadText = cantidadEditText.text.toString()
+        val cantidad = if (cantidadText.isNotEmpty()) cantidadText.toInt() else 0
+
+        // Calcular el total
+        val total = cantidad * costo
+
+        // Actualizar el TextView con el total
+        orderTotal.text = "Total: %.2f".format(total)
+        // Configura el TextWatcher para el EditText
+        cantidadEditText.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                updateTotal(costo)
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                // No necesitamos hacer nada aquí
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                // No necesitamos hacer nada aquí
+            }
+        })
+    }
+
+    private fun updateTotal(costo: Float) {
+        // Obtener la cantidad ingresada
+        val cantidadText = cantidadEditText.text.toString()
+        val cantidad = if (cantidadText.isNotEmpty()) cantidadText.toInt() else 0
+
+        // Calcular el total
+        val total = cantidad * costo
+
+        // Actualizar el TextView con el total
+        orderTotal.text = "Total: %.2f".format(total)
     }
 
     private fun showUserNameActive() {
@@ -165,21 +203,26 @@ class MakeOrderActivity : AppCompatActivity() {
 
     private fun setOrder(){
         // Obtener los datos del pedido
+        val userId = auth.currentUser?.uid
+        val userVendedor = intent.getStringExtra("usuarioId")
         val titulo = orderTitle.text.toString()
         val costo = orderCost.text.toString().substringAfter(":").trim().toFloat()
         val cantidad = orderCantProduct.text.toString().toInt()
         val comprador = orderNameComprador.text.toString() // Obtener el nombre del comprador
         val telComprador = orderTelComprador.text.toString() // Obtener el teléfono del comprador
         val productUid = intent.getStringExtra("uid")
+        val state = "Pendiente de revisar"
 
         // Crear un mapa con los datos del pedido
         val pedido = hashMapOf(
+            "compradorId" to userId,
+            "vendedorId" to userVendedor,
             "titulo" to titulo,
             "costo" to costo,
             "cantidad" to cantidad,
             "comprador" to comprador,
-            "telComprador" to telComprador
-            // Puedes agregar más campos del pedido aquí si es necesario
+            "telComprador" to telComprador,
+            "state" to state
         )
 
         // Agregar el pedido a la colección "pedidos" en Firestore

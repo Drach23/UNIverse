@@ -11,6 +11,7 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.unitech.universe.PerfilActivity
 import com.unitech.universe.R
+import com.unitech.universe.seller_views.ViewsOrdersActivity
 import com.unitech.universe.start_pages.UniverseActivity
 
 object MenuUtils {
@@ -61,7 +62,7 @@ object MenuUtils {
             Toast.makeText(context, "Mostrando Ventas", Toast.LENGTH_SHORT).show()
             popupWindow.dismiss()
 
-            val intent = Intent(context, PerfilActivity::class.java)
+            val intent = Intent(context, ViewsOrdersActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             context.startActivity(intent)
         }

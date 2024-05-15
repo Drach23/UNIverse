@@ -112,7 +112,7 @@
             android:id="@+id/order_total"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:text="Total"
+            android:text="Total:"
             android:textStyle="bold"
             android:textColor="@color/white"
             android:textSize="28sp"
