@@ -56,7 +56,7 @@ dependencies {
     implementation("com.firebaseui:firebase-ui-firestore:7.1.1")
 
     // Dependency for Picasso
-    implementation ("com.squareup.picasso:picasso:2.8")git status
+    implementation ("com.squareup.picasso:picasso:2.8")
 
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
