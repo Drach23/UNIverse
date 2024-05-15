@@ -1,10 +1,13 @@
 package com.unitech.universe
 
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageButton
+import android.widget.MediaController
 import android.widget.TextView
 import android.widget.Toast
+import android.widget.VideoView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
@@ -44,6 +47,7 @@ class PerfilActivity : AppCompatActivity() {
         // ------------------ Navegadores ----------------------------
         showUserNameActive() // Busqueda de usuario
         showUserPerfil() // Muestra datos del Usuario
+        video()
 
         //------------------- Barra de navegacion ---------------------
         bottomNavigationView = findViewById(R.id.bottom_navigation)
@@ -135,6 +139,17 @@ class PerfilActivity : AppCompatActivity() {
             }
     }
 
+    fun video(){
+        val video: VideoView = findViewById(R.id.videoView)
+        val videoPath:String = "android.resource://" + packageName + "/" + R.raw.depeache
+        val uri: Uri = Uri.parse(videoPath)
+        video.setVideoURI(uri)
+
+        val mediaController = MediaController(this)
+        video.setMediaController(mediaController)
+        mediaController.setAnchorView(video)
+
+    }
     // ----------------- Mostrar errores ------------------------------
     private fun showMessage(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
