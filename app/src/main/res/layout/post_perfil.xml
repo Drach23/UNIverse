@@ -192,7 +192,7 @@
                 android:layout_marginEnd="5dp"
                 android:background="@color/cyan"
                 android:backgroundTint="@color/cyan"
-                android:text="Pedir"
+                android:text="Guardar"
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 android:textStyle="bold"/>
