@@ -76,6 +76,12 @@ class FirebaseService : AppCompatActivity() {
             "fechaPublicacion" to fechaPublicacion
         )
 
+        // Add search keywords to the map
+        val searchKeywords = mutableListOf<String>()
+        searchKeywords.addAll(titulo.split(" "))
+        searchKeywords.addAll(categoria.split(" "))
+        publicacion["searchKeywords"] = searchKeywords
+
         // Guardar la publicación en la colección "publicaciones"
         db.collection("publicaciones")
             .add(publicacion)
