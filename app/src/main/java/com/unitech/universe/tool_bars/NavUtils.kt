@@ -5,6 +5,7 @@ import android.view.MenuItem
 import com.unitech.universe.HomePageActivity
 import com.unitech.universe.R
 import com.unitech.universe.post_feed.CreatePostsActivity
+import com.unitech.universe.user_views.SearchViewActivity
 
 
 object NavUtils {
@@ -12,7 +13,8 @@ object NavUtils {
     // Mapeo de IDs de elementos del menú a sus respectivas clases de actividad
     private val menuItemToActivityMap = mapOf(
         R.id.nav_home to HomePageActivity::class.java,
-        R.id.nav_add to CreatePostsActivity::class.java
+        R.id.nav_add to CreatePostsActivity::class.java,
+        R.id.nav_search to SearchViewActivity::class.java
     )
 
     // Maneja la selección de elementos del menú
