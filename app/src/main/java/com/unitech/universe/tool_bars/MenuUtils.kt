@@ -13,6 +13,7 @@ import com.unitech.universe.PerfilActivity
 import com.unitech.universe.R
 import com.unitech.universe.seller_views.ViewsOrdersActivity
 import com.unitech.universe.start_pages.UniverseActivity
+import com.unitech.universe.user_views.OrdersCheckUserActivity
 
 object MenuUtils {
     private var auth: FirebaseAuth? = null // Cambiado a nullable para evitar NullPointerExceptions
@@ -72,6 +73,15 @@ object MenuUtils {
             popupWindow.dismiss()
 
             val intent = Intent(context, PerfilActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            context.startActivity(intent)
+        }
+
+        popupView.findViewById<LinearLayout>(R.id.menu_item_5).setOnClickListener {
+            Toast.makeText(context, "Mostrando Pedidos", Toast.LENGTH_SHORT).show()
+            popupWindow.dismiss()
+
+            val intent = Intent(context, OrdersCheckUserActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             context.startActivity(intent)
         }

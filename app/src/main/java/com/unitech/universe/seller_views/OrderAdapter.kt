@@ -34,7 +34,6 @@ class OrderAdapter(private val pedidos: List<Pedido>) : RecyclerView.Adapter<Ord
         val total = (costo * cantidad)
 
         holder.totalTextView.text = "$total $"
-        holder.totalTextView.text = "$total $"
 
 
         // Obtener username

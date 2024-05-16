@@ -101,6 +101,38 @@
             android:layout_marginStart="20dp"/>
 
     </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2.2dp"
+        android:background="#333C4F"/>
+
+    <LinearLayout
+        android:id="@+id/menu_item_5"
+        android:layout_width="280dp"
+        android:layout_height="55dp"
+        android:gravity="center_vertical"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_margin="5dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:onClick="onMenuItemClick">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_pedidos"
+            android:contentDescription="pedidos"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mis Pedidos"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:layout_marginStart="20dp"/>
+
+    </LinearLayout>
 
     <View
         android:layout_width="match_parent"

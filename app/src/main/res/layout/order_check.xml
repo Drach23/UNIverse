@@ -20,6 +20,7 @@
             android:layout_height="100dp"
             app:cardCornerRadius="5dp">
             <ImageView
+                android:id="@+id/orderCheck_photo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_foto_update"/>
@@ -34,10 +35,19 @@
                 android:layout_width="140dp"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
+                android:text="Producto:"
+                android:textColor="@color/white"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/orderCheck_titulo"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
                 android:text="Titulo de Producto"
                 android:textColor="@color/white"
                 android:textStyle="bold"/>
             <TextView
+                android:id="@+id/orderCheck_cant"
                 android:layout_width="140dp"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
@@ -51,6 +61,7 @@
             android:layout_marginTop="3dp"
             android:orientation="vertical">
             <TextView
+                android:id="@+id/orderCheck_total"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
@@ -59,6 +70,15 @@
                 android:textColor="@color/white"
                 android:textStyle="bold"/>
             <TextView
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="Estado:"
+                android:textAlignment="textEnd"
+                android:textColor="@color/white"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/orderCheck_state"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
