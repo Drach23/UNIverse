@@ -55,6 +55,19 @@ class OrderCheckAdapter(private val pedidos: List<Pedido>) : RecyclerView.Adapte
             }
         }
 
+        // Configurar el clic del botón Cancelar
+        holder.cancelarButton.setOnClickListener {
+            cancelarPedido(pedido.uid.toString()) { exito ->
+                if (exito) {
+                    // Si la cancelación fue exitosa, actualiza la interfaz de usuario para eliminar el pedido
+                    pedidos.toMutableList().remove(pedido)
+                    notifyDataSetChanged()
+                } else {
+                    println("Error al eliminar pedido")
+                }
+            }
+        }
+
     }
 
     override fun getItemCount(): Int {
@@ -67,6 +80,7 @@ class OrderCheckAdapter(private val pedidos: List<Pedido>) : RecyclerView.Adapte
         val stateTextView: TextView = itemView.findViewById(R.id.orderCheck_state)
         val cantTextView: TextView = itemView.findViewById(R.id.orderCheck_cant)
         val totalTextView: TextView = itemView.findViewById(R.id.orderCheck_total)
+        val cancelarButton: Button = itemView.findViewById(R.id.orderCheck_btn_cancelar)
     }
 
     private fun obtenerUrlImagen(titulo: String, uid: String, callback: (String?) -> Unit) {
@@ -95,6 +109,22 @@ class OrderCheckAdapter(private val pedidos: List<Pedido>) : RecyclerView.Adapte
             .addOnFailureListener { exception ->
                 // Manejo de errores
                 callback(null)
+            }
+    }
+
+    private fun cancelarPedido(pedidoId: String, onComplete: (Boolean) -> Unit) {
+        val db = FirebaseFirestore.getInstance()
+        val pedidosRef = db.collection("pedidos")
+
+        pedidosRef.document(pedidoId)
+            .delete()
+            .addOnSuccessListener {
+                // Éxito al eliminar el pedido
+                onComplete(true)
+            }
+            .addOnFailureListener { e ->
+                // Error al eliminar el pedido
+                onComplete(false)
             }
     }
 }
