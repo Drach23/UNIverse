@@ -92,18 +92,19 @@
                     android:textStyle="bold"/>
             </LinearLayout>
         </LinearLayout>
+
         <Button
             android:id="@+id/orderCheck_btn_cancelar"
-            android:layout_width="160dp"
+            android:layout_width="230dp"
             android:layout_height="48dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
             android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="@color/cloud_burst"
             android:text="Cancelar"
-            android:textStyle="bold"
-            android:textSize="18sp"
             android:textColor="@color/white"
-            android:background="@color/red"/>
+            android:textSize="16sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
 

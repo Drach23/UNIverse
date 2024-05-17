@@ -183,8 +183,6 @@
                 android:id="@+id/item_btn_pedir"
                 android:layout_width="150dp"
                 android:layout_height="48dp"
-                android:background="@color/cyan"
-                android:backgroundTint="@color/cyan"
                 android:text="Pedir"
                 android:textColor="@color/white"
                 android:textSize="16sp"

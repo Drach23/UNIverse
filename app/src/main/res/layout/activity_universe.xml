@@ -75,7 +75,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/loginPasswordEditText"
-        android:background="@color/buttonColor"
+        android:background="@color/sky_blue_button"
         android:textColor="@color/white"
         android:onClick="login"
         />

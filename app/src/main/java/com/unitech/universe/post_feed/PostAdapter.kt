@@ -26,7 +26,6 @@ class PostAdapter(private val publicaciones: List<Publicacion>) : RecyclerView.A
         val publicacion = publicaciones[position]
         val auth = FirebaseAuth.getInstance()
         val userId = auth.currentUser!!.uid
-        println("AQUI ESTA EL USUARIO ${userId}")
 
         // Asignar los valores de la publicación a las vistas
         // Configura el usuario TextView.
@@ -42,7 +41,7 @@ class PostAdapter(private val publicaciones: List<Publicacion>) : RecyclerView.A
             }
         holder.tituloTextView.text = publicacion.titulo
         holder.categoriaTextView.text = publicacion.categoria
-        holder.costoTextView.text = publicacion.costo.toString()
+        holder.costoTextView.text = "${publicacion.costo.toString()} $"
         holder.descripcionTextView.text = publicacion.descripcion
         holder.ubicacionTextView.text = publicacion.ubicacion
         holder.dateTextView.text = publicacion.fechaPublicacion

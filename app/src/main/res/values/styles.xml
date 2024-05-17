@@ -23,6 +23,7 @@
     <style name="splashTheme" parent="AppTheme">
         <item name="android:windowBackground">@drawable/splashscreen</item>
     </style>
+
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light">
         <!-- Personalización del tema del popup -->
         <item name="android:colorBackground">@color/backgroundUniverse</item>

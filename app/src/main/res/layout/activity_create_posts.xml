@@ -41,7 +41,6 @@
                 android:id="@+id/btn_photo"
                 android:layout_width="240dp"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/cyan"
                 android:text="Añadir Foto" />
 
         </LinearLayout>
@@ -121,11 +120,10 @@
         <Button
             android:id="@+id/btn_add"
             android:layout_width="250dp"
-            android:layout_height="50dp"
+            android:layout_height="55dp"
             android:layout_marginTop="30dp"
             android:text="PUBLICAR"
-            android:textSize="25sp"
-            android:background="@color/sky_blue_button"/>
+            android:textSize="25sp" />
 
 
     </LinearLayout>

@@ -212,20 +212,23 @@
 
             <Button
                 android:id="@+id/order_btn_cancelar"
-                android:layout_width="120dp"
+                android:layout_width="140dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:text="Cancelar"
-                android:textColor="@color/white"/>
+                android:textSize="15sp"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/cloud_burst"/>
             <Button
                 android:id="@+id/order_btn_aceptar"
-                android:layout_width="120dp"
+                android:layout_width="140dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:text="Aceptar"
-                android:textColor="@color/white"/>
+                android:textSize="15sp"
+                android:textColor="@color/white" />
         </LinearLayout>
 
         <TextView
@@ -243,6 +246,21 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentStart="true"
             android:layout_below="@id/order_section_tel"/>
+
+        <Button
+            android:id="@+id/order_change_state"
+            android:layout_width="190dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="20dp"
+            android:text="Modificar Estado"
+            android:textSize="15sp"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@id/order_state_text"
+            android:backgroundTint="@color/cloud_burst"
+            android:textColor="@color/white"/>
 
 
     </RelativeLayout>

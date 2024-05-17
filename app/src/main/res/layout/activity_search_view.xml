@@ -11,10 +11,14 @@
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/search_view"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
         android:queryHint="Buscar publicaciones"
+        android:hint="Buscar publicaciones"
+        app:searchHintIcon="@color/gray_toolbar"
+        android:textAlignment="center"
+        android:textAppearance="@color/black"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

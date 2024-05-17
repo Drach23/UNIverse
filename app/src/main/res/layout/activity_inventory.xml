@@ -181,25 +181,26 @@
             android:layout_marginBottom="10dp">
 
             <Button
-                android:id="@+id/stock_editButton"
-                android:layout_width="160dp"
-                android:layout_height="48dp"
-                android:background="@color/cloud_burst"
-                android:text="Editar"
-                android:textColor="@color/white"
-                android:layout_marginEnd="20dp"
-                android:layout_marginStart="10dp"
-                android:padding="10dp"/>
-
-            <Button
                 android:id="@+id/stock_deleteButton"
                 android:layout_width="160dp"
                 android:layout_height="wrap_content"
-                android:background="@color/cloud_burst"
+                android:backgroundTint="@color/cloud_burst"
                 android:text="Eliminar"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:textColor="@color/white"
+                android:textStyle="bold"
+                android:padding="10dp"/>
+
+            <Button
+                android:id="@+id/stock_editButton"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:text="Editar"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="10dp"
                 android:padding="10dp"/>
         </LinearLayout>
     </LinearLayout>

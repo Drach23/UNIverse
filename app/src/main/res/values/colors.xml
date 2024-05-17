@@ -10,10 +10,14 @@
     <color name = "backgroundUniverse">#000813</color>
     <color name= "buttonColor">#14E</color>
     <color name="blue">#0859C8</color>
-    <color name="sky_blue_button">#1E7DFF</color>
+    <color name="sky_blue_button">#008FFF</color>
     <color name="gray">#CCD2DA</color>
     <color name="cyan">#049B90</color>
+    <color name="resalt">#00DCD2 </color>
+    <color name="blue_green">#00C180 </color>
+    <color name="button_back">#387A73</color>
     <color name="red">#C20E0E</color>
+    <color name="dark_red">#B50000</color>
     <color name="gray_toolbar">#22262B</color>
     <color name="post">#0C1422</color>
     <color name="image_post">#121C2E</color>

@@ -25,7 +25,7 @@ class StockAdapter(private val publicaciones: List<Publicacion>) : RecyclerView.
 
         holder.tituloTextView.text = publicacion.titulo
         holder.categoriaTextView.text = publicacion.categoria
-        holder.costoTextView.text = publicacion.costo.toString()
+        holder.costoTextView.text = "${publicacion.costo.toString()} $"
         holder.descripcionTextView.text = publicacion.descripcion
         holder.ubicacionTextView.text = publicacion.ubicacion
         holder.stockTextView.text = "${publicacion.stock.toString()} piezas"

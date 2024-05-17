@@ -212,10 +212,12 @@ class MakeOrderActivity : AppCompatActivity() {
         val comprador = orderNameComprador.text.toString() // Obtener el nombre del comprador
         val telComprador = orderTelComprador.text.toString() // Obtener el teléfono del comprador
         val productUid = intent.getStringExtra("uid")
+
         val state = "Pendiente de revisar"
 
         // Crear un mapa con los datos del pedido
         val pedido = hashMapOf(
+            "publicacionId" to productUid,
             "compradorId" to userId,
             "vendedorId" to userVendedor,
             "titulo" to titulo,

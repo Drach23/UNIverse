@@ -57,11 +57,13 @@ class OrderAdapter(private val pedidos: List<Pedido>) : RecyclerView.Adapter<Ord
         if (pedido.state == "Aceptado" || pedido.state == "Cancelado") {
             holder.btnAceptarOrden.visibility = View.INVISIBLE
             holder.btnCancelararOrden.visibility = View.INVISIBLE
+            holder.btnChangeState.visibility = View.VISIBLE
             holder.stateTextView.visibility = View.VISIBLE
         } else {
             holder.btnAceptarOrden.visibility = View.VISIBLE
             holder.btnCancelararOrden.visibility = View.VISIBLE
             holder.stateTextView.visibility = View.INVISIBLE
+            holder.btnChangeState.visibility = View.INVISIBLE
         }
 
         // Listeners para los botones de aceptar y cancelar orden
@@ -71,6 +73,13 @@ class OrderAdapter(private val pedidos: List<Pedido>) : RecyclerView.Adapter<Ord
 
         holder.btnCancelararOrden.setOnClickListener {
             actualizarEstadoOrden(pedido.uid, "Cancelado", position)
+        }
+
+        holder.btnChangeState.setOnClickListener{
+            holder.btnAceptarOrden.visibility = View.VISIBLE
+            holder.btnCancelararOrden.visibility = View.VISIBLE
+            holder.stateTextView.visibility = View.INVISIBLE
+            holder.btnChangeState.visibility = View.INVISIBLE
         }
 
     }
@@ -90,6 +99,7 @@ class OrderAdapter(private val pedidos: List<Pedido>) : RecyclerView.Adapter<Ord
         val btnAceptarOrden: Button = itemView.findViewById(R.id.order_btn_aceptar)
         val btnCancelararOrden: Button = itemView.findViewById(R.id.order_btn_cancelar)
         val stateTextView: TextView = itemView.findViewById(R.id.order_state_text)
+        val btnChangeState: Button = itemView.findViewById(R.id.order_change_state)
     }
 
     private fun actualizarEstadoOrden(pedidoId: String?, nuevoEstado: String, position: Int) {

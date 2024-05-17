@@ -27,7 +27,7 @@
             android:layout_marginBottom="10dp"
             android:contentDescription="Image_Post"
             android:background="@color/image_post"
-            android:src="@mipmap/ic_launcher_round"
+            android:src="@drawable/ic_foto_update"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"/>
@@ -35,7 +35,7 @@
         <Button
             android:id="@+id/btn_edit_photo"
             android:layout_width="150dp"
-            android:layout_height="55dp"
+            android:layout_height="50dp"
             android:layout_marginBottom="10dp"
             android:text="Cambiar Foto"
             android:textColor="@color/white"
@@ -183,11 +183,10 @@
                 android:layout_height="48dp"
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="10dp"
-                android:background="@color/red"
-                android:backgroundTint="@color/cyan"
+                android:backgroundTint="@color/cloud_burst"
                 android:text="Cancelar"
                 android:textColor="@color/white"
-                android:textSize="17sp"
+                android:textSize="16sp"
                 android:textStyle="bold"/>
             <Button
                 android:id="@+id/item_edit_btn_save"
@@ -195,11 +194,9 @@
                 android:layout_height="48dp"
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="5dp"
-                android:background="@color/cyan"
-                android:backgroundTint="@color/cyan"
                 android:text="Guardar"
                 android:textColor="@color/white"
-                android:textSize="17sp"
+                android:textSize="16sp"
                 android:textStyle="bold"/>
         </LinearLayout>
 
