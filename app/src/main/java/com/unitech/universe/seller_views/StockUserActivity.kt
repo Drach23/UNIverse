@@ -5,20 +5,25 @@ import android.os.Bundle
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.unitech.universe.R
+import com.unitech.universe.post_feed.Publicacion
 import com.unitech.universe.tool_bars.MenuUtils
 import com.unitech.universe.tool_bars.NavUtils
 
-class EditPostActivity : AppCompatActivity() {
+class StockUserActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
     private lateinit var bottomNavigationView: BottomNavigationView
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var adapter: StockAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_edit_post)
+        setContentView(R.layout.activity_stock_user)
 
         auth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
@@ -45,6 +50,46 @@ class EditPostActivity : AppCompatActivity() {
         val menuButton: ImageButton = findViewById(R.id.menuButton)
         menuButton.setOnClickListener {
             MenuUtils.showPopupMenu(this, it)
+        }
+
+        // Inicializa el RecyclerView
+        recyclerView = findViewById(R.id.stock_views)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+
+        // Llama a la función para obtener las publicaciones
+        getPedidosFromFirestore()
+    }
+
+    private fun getPedidosFromFirestore() {
+        val db = FirebaseFirestore.getInstance()
+        val auth = FirebaseAuth.getInstance()
+        val currentUser = auth.currentUser
+
+        if (currentUser != null) {
+            val userId = currentUser.uid
+
+            db.collection("publicaciones")
+                .whereEqualTo("usuarioId", userId)
+                .addSnapshotListener { snapshots, exception ->
+                    if (exception != null) {
+                        showMessage("Error getting documents: $exception")
+                        return@addSnapshotListener
+                    }
+
+                    val publicacionList = mutableListOf<Publicacion>()
+                    if (snapshots != null) {
+                        for (document in snapshots) {
+                            val publicacion = document.toObject(Publicacion::class.java)
+                            publicacion.uid = document.id
+                            publicacionList.add(publicacion)
+                        }
+                    }
+                    // Pasar la lista de pedidos al adaptador
+                    adapter = StockAdapter(publicacionList)
+                    recyclerView.adapter = adapter
+                }
+        } else {
+            showMessage("User not authenticated")
         }
     }
 

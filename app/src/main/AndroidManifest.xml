@@ -12,6 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.UNIverse"
         tools:targetApi="31">
+        <activity android:name=".EditPostActivity"
+            android:exported="true"/>
         <activity
             android:name=".user_views.SearchViewActivity"
             android:exported="true" />
@@ -25,8 +27,8 @@
             android:name=".user_views.MakeOrderActivity"
             android:exported="false" />
         <activity
-            android:name=".seller_views.EditPostActivity"
-            android:exported="false" />
+            android:name=".seller_views.StockUserActivity"
+            android:exported="true" />
         <activity
             android:name=".post_feed.CreatePostsActivity"
             android:exported="true" />

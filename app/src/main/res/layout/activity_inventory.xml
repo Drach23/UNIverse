@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/card_view_order"
+    android:id="@+id/card_view_stock"
     android:layout_margin="8dp"
     app:cardBackgroundColor="@color/post"
     app:cardCornerRadius="4dp"
@@ -22,102 +22,182 @@
             android:orientation="horizontal">
 
             <androidx.cardview.widget.CardView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="125dp"
+                android:layout_height="125dp"
                 app:cardCornerRadius="5dp">
 
                 <ImageView
-                    android:id="@+id/orderCheck_photo"
+                    android:id="@+id/stock_photo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_foto_update"/>
             </androidx.cardview.widget.CardView>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="3dp"
                 android:orientation="vertical">
 
                 <TextView
-                    android:layout_width="140dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
                     android:text="Producto:"
+                    android:textSize="15sp"
                     android:textColor="@color/white"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold|italic"/>
                 <TextView
-                    android:id="@+id/orderCheck_titulo"
-                    android:layout_width="140dp"
+                    android:id="@+id/stock_titulo"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
                     android:text="Titulo de Producto"
+                    android:textSize="15sp"
                     android:textColor="@color/white"
-                    android:textStyle="bold"/>
-                <TextView
-                    android:id="@+id/orderCheck_cant"
-                    android:layout_width="140dp"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp"
-                    android:text="Cantidad de Producto"
-                    android:textColor="@color/white" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="3dp"
-                android:orientation="vertical">
+                    android:textStyle="italic"/>
 
                 <TextView
-                    android:id="@+id/orderCheck_total"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp"
-                    android:text="ubicacion"
-                    android:textAlignment="textEnd"
-                    android:textColor="@color/white"
-                    android:textStyle="bold"/>
-                <TextView
-                    android:id="@+id/orderCheck_description"
-                    android:layout_width="120dp"
+                    android:id="@+id/stock_description"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
                     android:text="Descripcion"
-                    android:textAlignment="textEnd"
+                    android:textSize="15sp"
+                    android:textColor="@color/white"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/stock_section_locate_category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:layout_marginBottom="2dp">
+            <LinearLayout
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Categoria:"
+                    android:textSize="16sp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/stock_category"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Categoria"
+                    android:textSize="16sp"
                     android:textColor="@color/white" />
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Ubicacion:"
+                    android:textSize="16sp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textAlignment="textEnd"/>
+                <TextView
+                    android:id="@+id/stock_locate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Ubicacion"
+                    android:textStyle="italic"
+                    android:textSize="15sp"
+                    android:textColor="@color/white"
+                    android:textAlignment="textEnd"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/stock_section_cant_cost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:layout_marginBottom="10dp">
+            <LinearLayout
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Cantidad Disponible:"
+                    android:textSize="16sp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/stock_cant"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Cantidad"
+                    android:textSize="16sp"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Precio por Unidad:"
+                    android:textSize="16sp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textAlignment="textEnd"/>
+                <TextView
+                    android:id="@+id/stock_cost"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Precio"
+                    android:textSize="16sp"
+                    android:textColor="@color/white"
+                    android:textAlignment="textEnd"/>
+            </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="10dp">
+            android:gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp">
 
             <Button
-                android:id="@+id/editButton"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:id="@+id/stock_editButton"
+                android:layout_width="160dp"
+                android:layout_height="48dp"
                 android:background="@color/cloud_burst"
                 android:text="Editar"
                 android:textColor="@color/white"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="50dp"
+                android:layout_marginEnd="20dp"
                 android:layout_marginStart="10dp"
                 android:padding="10dp"/>
 
             <Button
-                android:id="@+id/deleteButton"
-                android:layout_width="0dp"
+                android:id="@+id/stock_deleteButton"
+                android:layout_width="160dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:background="@color/cloud_burst"
                 android:text="Eliminar"
-                android:layout_marginTop="20dp"
+                android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:textColor="@color/white"
                 android:padding="10dp"/>

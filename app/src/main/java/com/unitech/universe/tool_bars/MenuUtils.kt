@@ -6,12 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.PopupWindow
-import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.unitech.universe.PerfilActivity
 import com.unitech.universe.R
-import com.unitech.universe.seller_views.EditPostActivity
+import com.unitech.universe.seller_views.StockUserActivity
 import com.unitech.universe.seller_views.ViewsOrdersActivity
 import com.unitech.universe.start_pages.UniverseActivity
 import com.unitech.universe.user_views.OrdersCheckUserActivity
@@ -73,7 +72,7 @@ object MenuUtils {
             Toast.makeText(context, "Mostrando Inventario", Toast.LENGTH_SHORT).show()
             popupWindow.dismiss()
 
-            val intent = Intent(context, EditPostActivity::class.java)
+            val intent = Intent(context, StockUserActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             context.startActivity(intent)
         }
