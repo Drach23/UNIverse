@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.UNIverse"
         tools:targetApi="31">
-        <activity android:name=".EditPostActivity"
+        <activity android:name=".seller_views.EditPostActivity"
             android:exported="true"/>
         <activity
             android:name=".user_views.SearchViewActivity"

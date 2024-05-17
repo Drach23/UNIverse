@@ -1,11 +1,10 @@
-package com.unitech.universe
+package com.unitech.universe.seller_views
 
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.MediaStore
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
@@ -16,7 +15,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.squareup.picasso.Picasso
-import com.unitech.universe.seller_views.StockUserActivity
+import com.unitech.universe.R
 import com.unitech.universe.tool_bars.MenuUtils
 import java.text.SimpleDateFormat
 import java.util.Calendar

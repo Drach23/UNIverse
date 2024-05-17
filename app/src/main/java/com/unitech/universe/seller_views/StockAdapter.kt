@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.squareup.picasso.Picasso
-import com.unitech.universe.EditPostActivity
 import com.unitech.universe.R
 import com.unitech.universe.post_feed.Publicacion
 
