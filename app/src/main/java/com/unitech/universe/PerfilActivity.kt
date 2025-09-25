@@ -47,7 +47,6 @@ class PerfilActivity : AppCompatActivity() {
         // ------------------ Navegadores ----------------------------
         showUserNameActive() // Busqueda de usuario
         showUserPerfil() // Muestra datos del Usuario
-        video()
 
         //------------------- Barra de navegacion ---------------------
         bottomNavigationView = findViewById(R.id.bottom_navigation)
@@ -139,22 +138,7 @@ class PerfilActivity : AppCompatActivity() {
             }
     }
 
-    fun video() {
-        val video: VideoView = findViewById(R.id.videoView)
-        val videoPath: String = "android.resource://" + packageName + "/" + R.raw.depeache
-        val uri: Uri = Uri.parse(videoPath)
-        video.setVideoURI(uri)
 
-        val mediaController = MediaController(this)
-        video.setMediaController(mediaController)
-        mediaController.setAnchorView(video)
-
-        // Configura el listener para iniciar el video cuando esté preparado
-        video.setOnPreparedListener {
-            it.isLooping = true // Si deseas que el video se repita automáticamente
-            video.start()
-        }
-    }
     // ----------------- Mostrar errores ------------------------------
     private fun showMessage(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()

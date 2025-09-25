@@ -137,36 +137,61 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/inicioTextView"
         />
-    <EditText
-        android:id="@+id/passwordEditText"
+    <!-- Campo Contraseña -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/passwordTextInputLayout"
         android:layout_width="360dp"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:hint="Contraseña"
-        android:inputType="textPassword|numberPassword"
-        android:autofillHints="password"
-        android:textSize="16sp"
-        android:padding="10dp"
-        android:background="@drawable/edit_text_background"
-        android:layout_marginTop="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textColorHint="@android:color/black"
+        app:boxCornerRadiusTopStart="6dp"
+        app:boxCornerRadiusTopEnd="6dp"
+        app:boxCornerRadiusBottomStart="6dp"
+        app:boxCornerRadiusBottomEnd="6dp"
+        app:endIconMode="password_toggle"
         app:layout_constraintTop_toBottomOf="@id/emailEditText"
-        />
-    <EditText
-        android:id="@+id/confirmPasswordEditText"
-        android:layout_width="360dp"
-        android:layout_height="50dp"
-        android:hint="Confirme su contraseña"
-        android:inputType="textPassword|numberPassword"
-        android:autofillHints="password"
-        android:textSize="16sp"
-        android:padding="10dp"
-        android:background="@drawable/edit_text_background"
-        android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/passwordEditText"
-        />
+        app:boxBackgroundColor="@color/white"
+        app:boxStrokeWidth="0dp"
+        app:endIconTint="@color/black"
+        android:layout_marginTop="16dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/passwordEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Campo Confirmar Contraseña -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/confirmPasswordTextInputLayout"
+        android:layout_width="360dp"
+        android:layout_height="wrap_content"
+        android:hint="Confirma tu contraseña"
+        android:textColorHint="@android:color/black"
+        app:boxCornerRadiusTopStart="6dp"
+        app:boxCornerRadiusTopEnd="6dp"
+        app:boxCornerRadiusBottomStart="6dp"
+        app:boxCornerRadiusBottomEnd="6dp"
+        app:endIconMode="password_toggle"
+        app:layout_constraintTop_toBottomOf="@id/passwordTextInputLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:boxBackgroundColor="@color/white"
+        app:boxStrokeWidth="0dp"
+        app:endIconTint="@color/black"
+        android:layout_marginTop="16dp">
+
+    <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/confirmPasswordEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
     <Button
         android:id="@+id/registerSaveButton"
         android:layout_width="250dp"
@@ -178,8 +203,7 @@
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/confirmPasswordEditText"
-        android:onClick="register"
+        app:layout_constraintTop_toBottomOf="@id/confirmPasswordTextInputLayout"
         />
 
 
