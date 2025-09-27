@@ -61,9 +61,14 @@
         android:minHeight="48dp"
         android:padding="10dp"
         android:textSize="16sp"
+        android:textColor="@color/black"
+        android:drawableEnd="@drawable/ic_eye"
+        android:drawablePadding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/loginEmailEditText" />
+
+
     <Button
         android:id="@+id/loginIngresarButton"
         android:layout_width="250dp"
