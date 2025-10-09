@@ -36,6 +36,10 @@
             android:name=".PerfilActivity"
             android:exported="true" />
         <activity
+            android:name=".notifications.NotificationActivity"
+            android:exported="true" />
+
+        <activity
             android:name=".start_pages.UniverseActivity"
             android:exported="true"
             android:theme="@style/splashTheme">

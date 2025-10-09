@@ -83,6 +83,11 @@ class PostAdapter(private val publicaciones: MutableList<Publicacion>) : Recycle
                 putExtra("imagenUrl", publicacion.imagenUrl)
             }
             holder.itemView.context.startActivity(intent)
+
+            // Crear notificación de pedido
+            publicacion.usuarioId?.let { ownerId ->
+                createNotification(ownerId, userId, "order", "Un usuario quiere pedir tu producto '${publicacion.titulo}'")
+            }
         }
     }
 
@@ -127,6 +132,10 @@ class PostAdapter(private val publicaciones: MutableList<Publicacion>) : Recycle
         publicacionRef.update("likes", FieldValue.arrayUnion(userId))
             .addOnSuccessListener {
                 notifyItemChanged(position)
+
+                publicaciones[position].usuarioId?.let { ownerId ->
+                    createNotification(ownerId, userId, "like", "A alguien le gustó tu publicación '${publicaciones[position].titulo}'")
+                }
             }
     }
 
@@ -145,10 +154,37 @@ class PostAdapter(private val publicaciones: MutableList<Publicacion>) : Recycle
         publicacionRef.update("dislikes", FieldValue.arrayUnion(userId))
             .addOnSuccessListener {
                 notifyItemChanged(position)
+
+                publicaciones[position].usuarioId?.let { ownerId ->
+                    createNotification(ownerId, userId, "dislike", "A alguien no le gustó tu publicación '${publicaciones[position].titulo}'")
+                }
             }
     }
 
-    // ✅ método para actualizar datos sin perder scroll
+    private fun createNotification(ownerId: String, fromUserId: String, type: String, message: String) {
+        val db = FirebaseFirestore.getInstance()
+
+        val userRef = db.collection("users").document(fromUserId)
+        userRef.get().addOnSuccessListener { document ->
+            val fromUsername = document.getString("username") ?: "Alguien"
+
+            val notification = hashMapOf(
+                "fromUserId" to fromUserId,
+                "fromUsername" to fromUsername,
+                "message" to message,
+                "seen" to false,
+                "timestamp" to System.currentTimeMillis(),
+                "type" to type
+            )
+
+            db.collection("notifications")
+                .document(ownerId)
+                .collection("userNotifications")
+                .add(notification)
+        }
+    }
+
+    // Actualizar lista sin perder scroll
     fun updateData(newList: List<Publicacion>) {
         publicaciones.clear()
         publicaciones.addAll(newList)

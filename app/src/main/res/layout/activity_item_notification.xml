@@ -1,0 +1,37 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="12dp">
+
+    <ImageView
+        android:id="@+id/iconNotification"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_notification"
+        android:layout_marginEnd="12dp"/>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/messageNotification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Texto de la notificación"
+            android:textSize="14sp"
+            android:textColor="@android:color/white"/> <!-- Cambiado a blanco -->
+
+        <TextView
+            android:id="@+id/timeNotification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hace 5 min"
+            android:textSize="12sp"
+            android:textColor="@android:color/holo_blue_light"/> <!-- Más visible en negro -->
+    </LinearLayout>
+
+</LinearLayout>

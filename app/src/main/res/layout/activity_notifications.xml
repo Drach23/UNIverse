@@ -1,0 +1,57 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/backgroundUniverse">
+
+    <!-- Toolbar -->
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/activity_actionbar"
+        android:layout_alignParentTop="true"/>
+
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewNotifications"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="155dp"
+        android:layout_marginBottom="52dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+
+    <!-- Mensaje de no notificaciones -->
+    <LinearLayout
+        android:id="@+id/noNotificationsLayout"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:visibility="visible">
+
+        <ImageView
+            android:id="@+id/ivNoNotifications"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/ic_sleepv3"/>
+
+        <TextView
+            android:id="@+id/tvNoNotifications"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No tienes notificaciones"
+            android:textSize="21sp"
+            android:textColor="@android:color/darker_gray"
+            android:padding="16dp"/>
+    </LinearLayout>
+
+    <!-- Bottom Navigation -->
+    <include
+        android:id="@+id/bottomNavigation"
+        layout="@layout/activity_navbar"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>
