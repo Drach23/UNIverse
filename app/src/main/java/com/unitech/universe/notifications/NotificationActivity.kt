@@ -93,6 +93,7 @@ class NotificationActivity : AppCompatActivity() {
                     ivNoNotifications.visibility = View.VISIBLE
                     recyclerView.visibility = View.GONE
                 } else {
+                    //mostrar las notificaciones
                     tvNoNotifications.visibility = View.GONE
                     ivNoNotifications.visibility = View.GONE
                     recyclerView.visibility = View.VISIBLE
