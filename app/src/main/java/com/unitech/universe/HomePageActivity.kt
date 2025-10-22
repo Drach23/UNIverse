@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.unitech.universe.post_feed.PostAdapter
 import com.unitech.universe.post_feed.Publicacion
 import com.unitech.universe.tool_bars.MenuUtils
@@ -59,6 +60,7 @@ class HomePageActivity : AppCompatActivity() {
     private fun getPublicacionesFromFirestore() {
         val db = FirebaseFirestore.getInstance()
         db.collection("publicaciones")
+            .orderBy("fechaPublicacion", Query.Direction.DESCENDING)
             .addSnapshotListener { snapshots, exception ->
                 if (exception != null) {
                     showMessage("Error getting documents: $exception")
