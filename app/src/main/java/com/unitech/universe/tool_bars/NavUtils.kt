@@ -4,9 +4,11 @@ import android.content.Intent
 import android.view.MenuItem
 import com.unitech.universe.HomePageActivity
 import com.unitech.universe.R
+import com.unitech.universe.messages.MessagesListActivity
 import com.unitech.universe.post_feed.CreatePostsActivity
 import com.unitech.universe.user_views.SearchViewActivity
 import com.unitech.universe.notifications.NotificationActivity
+
 
 
 object NavUtils {
@@ -16,7 +18,8 @@ object NavUtils {
         R.id.nav_home to HomePageActivity::class.java,
         R.id.nav_add to CreatePostsActivity::class.java,
         R.id.nav_search to SearchViewActivity::class.java,
-        R.id.nav_notifications to NotificationActivity::class.java
+        R.id.nav_notifications to NotificationActivity::class.java,
+        R.id.nav_messages to MessagesListActivity::class.java
     )
 
     // Maneja la selección de elementos del menú

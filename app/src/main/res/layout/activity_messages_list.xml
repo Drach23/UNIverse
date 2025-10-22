@@ -1,0 +1,67 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundUniverse"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- Toolbar -->
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/activity_actionbar"
+        android:layout_alignParentTop="true"/>
+
+    <!-- RecyclerView de chats -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewChats"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="155dp"
+        android:layout_marginBottom="52dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+
+    <!-- Mensaje de no conversaciones -->
+    <LinearLayout
+        android:id="@+id/noChatsLayout"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/ivNoChats"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/ic_sleepv3"/>
+
+        <TextView
+            android:id="@+id/textNoMessages"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Aún no tienes conversaciones"
+            android:textSize="21sp"
+            android:textColor="@android:color/darker_gray"
+            android:padding="16dp"/>
+    </LinearLayout>
+
+    <!-- FAB para nuevo mensaje -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabNewMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="16dp"
+        android:src="@android:drawable/ic_menu_add"
+        android:contentDescription="Nuevo mensaje"/>
+
+    <!-- Bottom Navigation -->
+    <include
+        android:id="@+id/bottomNavigation"
+        layout="@layout/activity_navbar"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>

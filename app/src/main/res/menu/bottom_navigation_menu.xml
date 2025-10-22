@@ -21,7 +21,7 @@
         android:title="Notifications" />
 
     <item
-        android:id="@+id/nav_email"
+        android:id="@+id/nav_messages"
         android:icon="@drawable/ic_chat"
         android:title="Messages" />
 
