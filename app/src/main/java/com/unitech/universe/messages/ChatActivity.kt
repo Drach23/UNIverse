@@ -24,86 +24,97 @@ class ChatActivity : AppCompatActivity() {
     private lateinit var messageAdapter: MessageAdapter
     private val messageList = mutableListOf<Message>()
     private lateinit var bottomNavigationView: BottomNavigationView
+    private lateinit var chatUserTextView: TextView
 
     private val db = FirebaseFirestore.getInstance()
     private val currentUserId = FirebaseAuth.getInstance().currentUser?.uid ?: ""
     private var otherUserId: String = ""
     private var chatId: String = ""
-
     private val auth = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
 
+        // Inicializar vistas
         recyclerView = findViewById(R.id.recyclerViewMessages)
         editTextMessage = findViewById(R.id.editTextMessage)
         buttonSend = findViewById(R.id.buttonSend)
+        bottomNavigationView = findViewById(R.id.bottom_navigation)
+        chatUserTextView = findViewById(R.id.textViewChatUser)
 
-        // 🔸 Obtener el ID del otro usuario desde el intent
+        // Obtener el ID del otro usuario desde el Intent
         otherUserId = intent.getStringExtra("otherUserId") ?: ""
-
-
-        // 🔸 Validar que haya otro usuario
         if (otherUserId.isEmpty()) {
-            finish() // si no hay usuario, cerramos la pantalla
+            finish() // cerrar si no hay usuario
             return
         }
 
-        // BottomNavigationView
-        bottomNavigationView = findViewById(R.id.bottom_navigation)
+        // Configurar BottomNavigation
         bottomNavigationView.selectedItemId = R.id.nav_messages
         bottomNavigationView.setOnItemSelectedListener { menuItem ->
             NavUtils.handleNavigationItemSelected(this, menuItem)
             true
         }
 
-        // Activa el hamburger - Despliega menu lateral
+        // Configurar hamburger
         val menuButton: ImageButton = findViewById(R.id.menuButton)
         menuButton.setOnClickListener {
             MenuUtils.showPopupMenu(this, it)
         }
 
+        // Mostrar el nombre del usuario con el que se está chateando
+        showChatUserName()
         showUserNameActive()
 
-        // 🔸 Generar un chatId único y ordenado
+
+        // Generar chatId único
         chatId = if (currentUserId < otherUserId) {
             "${currentUserId}_${otherUserId}"
         } else {
             "${otherUserId}_${currentUserId}"
         }
 
-        // 🔸 Configurar RecyclerView
+        // Configurar RecyclerView
         messageAdapter = MessageAdapter(messageList, currentUserId)
         recyclerView.adapter = messageAdapter
-        recyclerView.layoutManager = LinearLayoutManager(this).apply {
-            stackFromEnd = true
-        }
+        recyclerView.layoutManager = LinearLayoutManager(this).apply { stackFromEnd = true }
 
-        // 🔸 Escuchar los mensajes en tiempo real
+        // Escuchar mensajes en tiempo real
         listenMessages()
 
-        // 🔸 Enviar mensaje
-        buttonSend.setOnClickListener {
-            sendMessage()
-        }
+        // Enviar mensaje
+        buttonSend.setOnClickListener { sendMessage() }
+    }
+
+    private fun showChatUserName() {
+        // Referencia al documento del otro usuario
+        val otherUserRef = db.collection("users").document(otherUserId)
+        otherUserRef.get()
+            .addOnSuccessListener { document ->
+                val username = document?.getString("username")
+                if (!username.isNullOrBlank()) {
+                    chatUserTextView.text = username
+                } else {
+                    chatUserTextView.text = "Usuario"
+                }
+            }
+            .addOnFailureListener {
+                chatUserTextView.text = "Usuario"
+            }
     }
 
     private fun sendMessage() {
         val text = editTextMessage.text.toString().trim()
         if (text.isEmpty()) return
 
-        val message = Message(
-            senderId = currentUserId,
-            text = text
-        )
-
+        val message = Message(senderId = currentUserId, text = text)
         val chatRef = db.collection("chats").document(chatId)
 
-        // 🔸 Guardar el mensaje dentro del subcolección "messages"
+        // Guardar mensaje
         chatRef.collection("messages").add(message)
 
-        // 🔸 Actualizar o crear la información general del chat
+        // Actualizar info general del chat
         chatRef.set(
             mapOf(
                 "participants" to listOf(currentUserId, otherUserId),
@@ -112,7 +123,6 @@ class ChatActivity : AppCompatActivity() {
             )
         )
 
-        // 🔸 Limpiar el campo de texto
         editTextMessage.text.clear()
     }
 
@@ -125,9 +135,7 @@ class ChatActivity : AppCompatActivity() {
                     messageList.clear()
                     for (doc in snapshot.documents) {
                         val message = doc.toObject(Message::class.java)
-                        if (message != null) {
-                            messageList.add(message)
-                        }
+                        if (message != null) messageList.add(message)
                     }
                     messageAdapter.notifyDataSetChanged()
                     recyclerView.scrollToPosition(messageList.size - 1)
@@ -136,48 +144,24 @@ class ChatActivity : AppCompatActivity() {
     }
 
     private fun showUserNameActive() {
-        // Encuentra la TextView para mostrar el nombre del usuario
         val usernameTextView: TextView = findViewById(R.id.username)
-
-        // Obtén el usuario actual
         val currentUser = auth.currentUser
 
-        // Verifica si el usuario está autenticado
         if (currentUser != null) {
-            // Obtén el ID de usuario actual
-            val userId = currentUser.uid
-
-            // Referencia al documento del usuario en Firestore
-            val userRef = db.collection("users").document(userId)
-
-            // Realiza una solicitud para obtener los datos del documento del usuario
+            val userRef = db.collection("users").document(currentUser.uid)
             userRef.get()
                 .addOnSuccessListener { document ->
-                    // Verifica si el documento existe y contiene datos
-                    if (document?.exists() == true) {
-                        // Obtén el nombre de usuario
-                        val username = document.getString("username")
-
-                        // Verifica si el nombre de usuario es nulo o vacío
-                        if (!username.isNullOrBlank()) {
-                            // Muestra el nombre de usuario en la TextView
-                            usernameTextView.text = username
-                        } else {
-                            showMessage("No se encontró el nombre de usuario.")
-                        }
-                    } else {
-                        showMessage("No se encontraron datos del usuario.")
-                    }
+                    val username = document.getString("username")
+                    usernameTextView.text = if (!username.isNullOrBlank()) username else "Usuario"
                 }
-                .addOnFailureListener { exception ->
-                    // Maneja el error de manera específica
-                    showMessage("Error al obtener los datos del usuario: ${exception.message}")
+                .addOnFailureListener {
+                    showMessage("Error al obtener nombre de usuario.")
                 }
         } else {
-            // Si el usuario no está autenticado
-            showMessage("El usuario no está autenticado.")
+            showMessage("Usuario no autenticado.")
         }
     }
+
     private fun showMessage(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
