@@ -1,25 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF">
+    android:background="@color/backgroundUniverse">
 
-    <!-- Lista de mensajes -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewMessages"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:padding="8dp" />
+    <!-- Toolbar arriba -->
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/activity_actionbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
-    <!-- Caja de texto y botón enviar -->
+    <!-- BottomNavigation siempre abajo -->
+    <include
+        android:id="@+id/bottomNavigation"
+        layout="@layout/activity_navbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- Caja de texto + botón enviar, encima de bottom nav -->
     <LinearLayout
+        android:id="@+id/editTextLayout"
         android:orientation="horizontal"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:padding="8dp"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <EditText
             android:id="@+id/editTextMessage"
@@ -28,8 +45,9 @@
             android:layout_weight="1"
             android:hint="Escribe un mensaje..."
             android:padding="10dp"
+            android:textColor="@color/black"
             android:background="@drawable/edit_text_background"
-            android:layout_marginEnd="8dp" />
+            android:layout_marginEnd="8dp"/>
 
         <ImageButton
             android:id="@+id/buttonSend"
@@ -37,6 +55,18 @@
             android:layout_height="48dp"
             android:src="@android:drawable/ic_menu_send"
             android:background="@android:color/transparent"
-            android:contentDescription="Enviar mensaje" />
+            android:contentDescription="Enviar mensaje"/>
     </LinearLayout>
-</LinearLayout>
+
+    <!-- RecyclerView de mensajes -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewMessages"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="8dp"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintBottom_toTopOf="@id/editTextLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
